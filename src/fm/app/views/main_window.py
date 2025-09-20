@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QMainWindow, QLabel
+from PySide6.QtWidgets import QMainWindow, QLabel, QWidget, QVBoxLayout
 
 #Criação da janela principal, criando uma subclase da classe QMainWindow
 class MainWindow(QMainWindow):
@@ -7,6 +7,18 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("FM GenData") #Título da janela
         self.resize(600,400) #Configuraçao do tamanho inicial da janela
         
-        #Cria o label a ser adicionado a janela
-        label = QLabel("FM Gen Dados - Janela Global") 
-        self.setCentralWidget(label) #Adicionando o label no centro do Widget
+      
+        #Criaçcão do container principal que irá englobar toda estrutura
+        container = QWidget()
+        
+        #Definição do Layout da janela principal
+        container_layout = QVBoxLayout()
+        
+        #Adicionar as widgets dos labels dentro do layout
+        container_layout.addWidget(QLabel("Texto 1"))
+        container_layout.addWidget(QLabel("Texto 2"))
+        
+        #Definir o layout do container
+        container.setLayout(container_layout)
+        self.setCentralWidget(container)
+        
