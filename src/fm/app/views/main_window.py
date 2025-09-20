@@ -7,4 +7,6 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("FM GenData") #Título da janela
         self.resize(600,400) #Configuraçao do tamanho inicial da janela
         
-        
+        #Cria o label a ser adicionado a janela
+        label = QLabel("FM Gen Dados - Janela Global") 
+        self.setCentralWidget(label) #Adicionando o label no centro do Widget
