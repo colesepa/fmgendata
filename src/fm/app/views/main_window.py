@@ -1,4 +1,5 @@
 from PySide6.QtWidgets import QMainWindow, QLabel, QWidget, QVBoxLayout
+from PySide6.QtGui import QAction
 
 #Criação da janela principal, criando uma subclase da classe QMainWindow
 class MainWindow(QMainWindow):
@@ -8,17 +9,28 @@ class MainWindow(QMainWindow):
         self.resize(600,400) #Configuraçao do tamanho inicial da janela
         
       
-        #Criaçcão do container principal que irá englobar toda estrutura
-        container = QWidget()
-        
-        #Definição do Layout da janela principal
-        container_layout = QVBoxLayout()
-        
-        #Adicionar as widgets dos labels dentro do layout
-        container_layout.addWidget(QLabel("Texto 1"))
-        container_layout.addWidget(QLabel("Texto 2"))
-        
-        #Definir o layout do container
-        container.setLayout(container_layout)
+        #Conteúdo central
+      
+        container = QWidget() #Criaçcão do container principal 
+        container_layout = QVBoxLayout() #Definição do Layout da janela principal
+        container_layout.addWidget( #Adicionar as widgets dos labels dentro do layout
+            QLabel("Área principal")) 
+        container.setLayout(container_layout) #Definir o layout do container
         self.setCentralWidget(container)
+        
+        #Criação do menu Arquivo na barra de MenuBar
+        menu_bar_arquivo = self.menuBar().addMenu("Arquivo")
+        #Adicionando um ação a janela principal
+        self.act_importar = QAction("importar HTML...", self)
+        #Linkando a acao de importar ao menu de importar do menubar
+        menu_bar_arquivo.addAction(self.act_importar)
+        
+        #Adicionando a ação de sair do menu bar
+        self.act_sair = QAction("Sair", self)
+        #Adicionando a função "Sair" ao evento do clique do botão sair
+        self.act_sair.triggered.connect(self.close)
+        menu_bar_arquivo.addAction(self.act_sair)
+        
+        
+        
         
