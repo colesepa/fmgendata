@@ -1,4 +1,10 @@
-from PySide6.QtWidgets import QMainWindow, QLabel, QWidget, QVBoxLayout
+from PySide6.QtWidgets import (
+    QMainWindow, 
+    QLabel, 
+    QWidget, 
+    QVBoxLayout,
+    QStatusBar
+    )
 from PySide6.QtGui import QAction
 
 #Criação da janela principal, criando uma subclase da classe QMainWindow
@@ -7,7 +13,8 @@ class MainWindow(QMainWindow):
         super().__init__() #Iniciando todos os métodos da classe pai
         self.setWindowTitle("FM GenData") #Título da janela
         self.resize(600,400) #Configuraçao do tamanho inicial da janela
-        
+        self.setStatusBar(QStatusBar(self)) #adicionando status bar a janela
+        self.statusBar().showMessage("Pronto", 2000) #configurando msg
       
         #Conteúdo central
       
