@@ -1,6 +1,6 @@
 import sys
 from PySide6.QtWidgets import QApplication
-from views.main_window import MainWindow #Importação da Janela principal
+from .views.main_window import MainWindow #Importação da Janela principal
 
 
 if __name__ == "__main__":

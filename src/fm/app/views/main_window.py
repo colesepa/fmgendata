@@ -7,13 +7,18 @@ from PySide6.QtWidgets import (
     QFileDialog,
     )
 from PySide6.QtGui import QAction
+from ..configs import*
+from ...utils import file_dialogs
+
 
 #Criação da janela principal, criando uma subclase da classe QMainWindow
 class MainWindow(QMainWindow):
     def __init__(self): #Iniciando a subclasse
         super().__init__() #Iniciando todos os métodos da classe pai
         self.setWindowTitle("FM GenData") #Título da janela
-        self.resize(600,400) #Configuraçao do tamanho inicial da janela
+        
+        #Configuraçao do tamanho inicial da janela
+        self.resize(WINDOW_GEOMETRY[0],WINDOW_GEOMETRY[1]) 
         self.setStatusBar(QStatusBar(self)) #adicionando status bar a janela
         self.statusBar().showMessage("Pronto", 2000) #configurando msg
       
@@ -43,15 +48,8 @@ class MainWindow(QMainWindow):
         
     def on_import(self): #Criação da função que ira capturar o path do arq
         
-        #QFileDialog retorno uma tupla de (<path>, <filtro_usado>)
-        path, html_filter = QFileDialog.getOpenFileName(
-            None, #Prefiro a versão sem Parent
-            "Selecione um arquivo HTML", #Título da Janela do QFileDialo
-            "", #Path inciial
-            "Arquivos HTML (*.html *htm)" #Filtro para arquivos html
-            )
-
-        #Verificar user seleção e mostrar no statusBar
+        path, _filter = file_dialogs.choose_html_file(None)
+        
         if path: 
-            self.statusBar().showMessage(f"Arquivo selecionado: {path}", 5000)
+            self.statusBar().showMessage(f"Arquivo selecionado: {path}", MESSAGE_STANDARD)
                 
