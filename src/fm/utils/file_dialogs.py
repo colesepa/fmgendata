@@ -14,10 +14,11 @@ def choose_html_file(
     - file_filter: filtro para o diálogo
     Retorna (None, None) se o usuário cancelar.
     """
-    
+     
     path, used_filter = QFileDialog.getOpenFileName(
         parent = parent,
         dir = start_dir,
+        filter=file_filter,
         selectedFilter = file_filter
     )
     

@@ -3,7 +3,7 @@ import os
 # ----------------------------
 # Window settings
 # ----------------------------
-WINDOW_GEOMETRY = (1000, 800)
+WINDOW_GEOMETRY = (600, 400)
 WINDOW_MIN_SIZE = (600, 400)
 
 
@@ -12,7 +12,7 @@ WINDOW_MIN_SIZE = (600, 400)
 # ----------------------------
 # DEFAULT_PATH = os.path.join(os.path.expanduser("~"), "Documentos")
 DEFAULT_PATH = ""
-HTML_FILTER = "Arquivos HTML (*.html *.htm)"
+HTML_FILTER = "Arquivos HTML (*.html)"
 ALL_FILES_FILTER = "Todos os Arquivos (*.*)"
 
 
