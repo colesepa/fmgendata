@@ -11,7 +11,8 @@ WINDOW_MIN_SIZE = (600, 400)
 # Paths & filters
 # ----------------------------
 # DEFAULT_PATH = os.path.join(os.path.expanduser("~"), "Documentos")
-DEFAULT_PATH = ""
+DEFAULT_PATH = "/home/mjsa/Github/fmgendata/data/raw"
+# DEFAULT_PATH = ''
 HTML_FILTER = "Arquivos HTML (*.html)"
 ALL_FILES_FILTER = "Todos os Arquivos (*.*)"
 
