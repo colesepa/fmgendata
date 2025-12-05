@@ -23,7 +23,7 @@ from unidecode import unidecode
     
 #     return df
 
-def _initialize_dataframe(path:str) -> pd.DataFrame|None:
+def _initialize_dataframe(path:str) -> pd.DataFrame | None:
     
     try:
         dados = pd.read_html(path, encoding='utf-8', decimal='.')
@@ -34,6 +34,7 @@ def _initialize_dataframe(path:str) -> pd.DataFrame|None:
         
     except Exception as e:
         print(f'Erro: {e}')
+        
 
 def _drop_fm_dataframe_columns(df: pd.DataFrame, columns:list) -> pd.DataFrame:
     

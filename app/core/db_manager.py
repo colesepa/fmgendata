@@ -153,5 +153,79 @@ def bulk_upsert(
         return
     
     placeholdeer = ", ".join(["?"]*len(columns_df))
-     
+    columns_joined = ", ".join(columns_df)
+    update_columns = [f'{col}=excluded.{col}' for col in columns_df if col not in ("id", "id_temporada")]
+    update_joined = ", ".join(update_columns)
     
+    query = f"""
+    INSERT INTO {table_name} ({columns_joined})
+    VALUES ({placeholdeer})
+    ON CONFLICT(id, id_temporada) DO UPDATE SET 
+    {update_joined};
+    """
+    
+    values = list(df.itertuples(index=False, name=None))
+    
+    try:
+        cur.executemany(query, values)
+        conn.commit()
+    
+    except Exception as e:
+        print(f"{e}")
+        
+        if conn:
+            conn.rollback()
+    
+    finally:
+        if conn:
+            conn.close()
+        
+def clear_table(table_name: str = ' stats') -> None:
+    
+    conn = connect_db()
+    cur = conn.cursor()
+    
+    try:
+        
+        cur.execute(f"DELETE FROM {table_name}")
+        conn.commit()
+        
+    except Exception as e:
+        print(f"{e}")
+        
+        if conn:
+            conn.rollback()
+
+    finally:
+        if conn:
+            conn.close()
+
+def delete_rows(
+    column_name: str,
+    list_values: List[Any],
+    table_name: str = 'stats') -> None:
+    
+    conn = connect_db()
+    cur = conn.cursor()
+    
+    try:
+        
+        placeholders = ", ".join(["?"*len(list_values)])
+        
+        query = f"""
+        DELETE FROM {table_name}
+        WHERE {column_name} in ({placeholders})
+        """
+
+        cur.execute(query, list_values)
+        conn.commit()
+        
+    except Exception as e:
+        print(f"{e}")
+        
+        if conn:
+            conn.rollback()
+            
+    finally:
+        if conn:
+            conn.close()

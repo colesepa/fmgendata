@@ -1,5 +1,5 @@
 from typing import List, Union, Sequence
-
+import os
 import pandas as pd
 import re
 import numpy as np
@@ -42,7 +42,13 @@ def fm_create_dataframe(path:str) -> pd.DataFrame:
     
     #1.3 Criar coluna com id da temporada
     
-    df['id_temporada'] = ID_SEASON # type: ignore
+    if isinstance(df, pd.DataFrame):
+    
+        df['id_temporada'] = ID_SEASON # type: ignore
+ 
+    #1.4 Criar coluna com nome da db de referencia dos dados SOURCE
+    
+        df['source'] = os.path.basename(path)
     
     # 2. Limpeza estutural e renomeaçao das colunas importadas    
     
