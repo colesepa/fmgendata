@@ -1,80 +1,157 @@
-import os
-
-from PySide6.QtCore import Signal, QObject
 from pathlib import Path
-from typing import List
-from core.choose_file import choose_file
-from configs import HTML_FILTER
+import sqlite3
+import pandas as pd
+from typing import List, Any
+from data_manipulation import concat_positions
 
 
-class DbManager(QObject):
+def connect_db(db_name: str = 'data.db') -> sqlite3.Connection:
     
-    files_changed = Signal(list)
+    root = Path(__file__).resolve().parents[2]
+    path = root/'data'/'db'/db_name
     
-    def __init__(self) -> None:
-        super().__init__()
-        self.temp_html_files = {}
-        self._files_on_db = []
-        self._selected_files = []
+    conn = sqlite3.connect(path)
     
-    def select_files(self) -> None:
-        
-        print(f"Debug: {self.temp_html_files}")
-        print(f"Debug: {self._files_on_db}")
-        
-        paths, _used_filter = choose_file(file_filter=HTML_FILTER)
-        
-        if paths:
-            
-            path_obj = Path(paths)
-            
-            file_name = os.path.basename(paths)
-            file_name_non_ext = path_obj.stem
-            
-            if not file_name_non_ext in self.temp_html_files:
-            
-                self.temp_html_files[file_name_non_ext] = {
-                    "abs_name": file_name,
-                    "path":paths}
-                
-                self._files_on_db.append(file_name)
-                
-                self.files_changed.emit(self._files_on_db)
-                
-            else:
-                
-                print("DEBUG: Arquivo já selecionado.")
-                #implantar alertar de arquivo existente
-                pass
     
-    def clear_all_files(self):
+    return conn
 
-        self.temp_html_files.clear()
-        self._files_on_db.clear()
-        self.files_changed.emit(self._files_on_db)
-        
-    def set_selected_files(self, items:list) -> None:
-        
-        self._selected_files.clear()
-        self._selected_files = items
-                
-        return 
+def create_db(table_name: str = 'stats') -> None:
     
-    def remove_selecteds_items(self):
+    conn = connect_db()
+    cur = conn.cursor()
+    
+    scheme = f"""
+    CREATE TABLE IF NOT EXISTS {table_name} (
+    
+    id INTEGER,
+    nome TEXT,
+    nac TEXT,
+    idade INTEGER,
+    altura TEXT,
+    posicao TEXT,
+    melhor_pe TEXT,
+    person TEXT,
+    clube TEXT,
+    divisao TEXT,
+    salario INTEGER,
+    final_contrato TEXT,
+    partidas TEXT,
+    minutos INTEGER,
+    nota_med REAL,
+    motm REAL,
+    ass REAL,
+    gols REAL,
+    gk_sg REAL,
+    gk_gsof_p90 REAL,
+    xG REAL,
+    npxG REAL,
+    chutes_p90 REAL,
+    passe_t_p90 REAL,
+    passe_c_p90 REAL,
+    chutes_gol_p90 REAL,
+    press_t_p90 REAL,
+    press_c_p90 REAL,
+    poss_g_p90 REAL,
+    poss_p_p90 REAL,
+    des_c_p100 REAL,
+    passe_dec_p90 REAL,
+    jg_ar_t_p90 REAL,
+    cab_g_p100 REAL,
+    int_p90 REAL,
+    alivios_p90 REAL,
+    ass_p90 REAL,
+    bloqueios_p90 REAL,
+    cab_dec_p90 REAL,
+    cab_g_p90 REAL,
+    cab_p_p90 REAL,
+    cruz_c_p90 REAL,
+    cruz_t_p90 REAL,
+    des_dec_p90 REAL,
+    fintas_p90 REAL,
+    passe_prog_p90 REAL,
+    passe_c_p100 REAL,
+    xA_p90 REAL,
+    npxG_p90 REAL,
+    grandes_chances REAL,
+    cruz_c_p100 REAL,
+    gk_xG_def_p90 REAL,
+    gk_xG_def REAL,
+    xA REAL,
+    gk_def_p90 REAL,
+    gk_pen_def_p100 REAL,
+    des_g_p90 REAL,
+    id_temporada REAL,
+    preco_min REAL,
+    preco_max REAL,
+    coef REAL,
+    posicao_analise TEXT,
+    salario_anual REAL,
+    grandes_chances_p90 REAL,
+    aval_cria REAL,
+    np_chutes REAL,
+    np_chutes_p90 REAL,
+    np_chutes_gol REAL,
+    np_chutes_gol_p90 REAL,
+    np_chutes_gol_p100 REAL,
+    xG_p90 REAL,
+    npG REAL,
+    npG_p90 REAL,
+    conv_p100 REAL,
+    npG_ae REAL,
+    conv_penal_p100 REAL,
+    npxG_per_np_chute REAL,
+    xPnpG_p90 REAL,
+    pnpG_p90 REAL,
+    aval_fin REAL,
+    aof_p90 REAL,
+    faltas_sofridas_p90 REAL,
+    erros_decisivos_p90 REAL,
+    gk_def_dif_p90 REAL,
+    gk_def_segu_p90 REAL,
+    gk_def_desv_p90 REAL,
+    des_t_p90 REAL,
+    duel_t_p90 REAL,
+    duel_g_p90 REAL,
+    rtg_duel REAL,
+    adef_t_p90 REAL,
+    adef_c_p90 REAL,
+    rtg_adef REAL,
+    rtg_jg_ar REAL,
+    rtg_des REAL,
+    rtg_rec_bola REAL,
+    aval_def REAL,
+    source TEXT,
+    PRIMARY KEY (id, id_temporada)
+    );
+    """
+
+    try:
+        cur.execute(scheme)
+        conn.commit()
+    
+    except Exception as e:
+        print(f"{e}")
+        conn.rollback()
         
-        items = self._selected_files
-        
-        for item in items:
-            if item in self._files_on_db:
-                self._files_on_db.remove(item)
+    finally:
+        if conn:
+            conn.close()
             
-            key = item.removesuffix(".html")  
-            if key in self.temp_html_files:    
-                del  self.temp_html_files[key]
-               
-            
-        self.files_changed.emit(self._files_on_db)
-        self._selected_files.clear()
+def bulk_upsert(
+    df: pd.DataFrame, 
+    db_name: str = 'data.db', 
+    table_name: str = 'stats') -> None:
+    
+    columns_df = list(df.columns)
+    conn = connect_db(db_name=db_name)
+    cur = conn.cursor ()
+    
+    if "posicao_analise" in columns_df:
+        df['posicao_analse'] = df['posicao_analse'].apply(concat_positions)
         
-        print(f"Debug-Remove: {self.temp_html_files}")
-        print(f"Debug-Remove: {self._files_on_db}")
+    else:
+        return
+    
+    placeholdeer = ", ".join(["?"]*len(columns_df))
+     
+    

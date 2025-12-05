@@ -11,7 +11,7 @@ from PySide6.QtWidgets import (
     QAbstractItemView,
     )
 
-from core.db_manager import DbManager
+from core.ui_db_manager import UiDbManager
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -36,7 +36,7 @@ class MainWindow(QMainWindow):
         
         self.btn_gerar_bd = QPushButton("Gerar DB")
         
-        self.db_manager = DbManager()
+        self.ui_db_manager = UiDbManager()
         
         self.statusBar().showMessage("Pronto", 2000)
         
@@ -61,21 +61,21 @@ class MainWindow(QMainWindow):
         
         # --- Signals ---
         
-        self.btn_carregar_html.clicked.connect(self.db_manager.select_files)
-        self.btn_clear_list.clicked.connect(self.db_manager.clear_all_files)
+        self.btn_carregar_html.clicked.connect(self.ui_db_manager.select_files)
+        self.btn_clear_list.clicked.connect(self.ui_db_manager.clear_all_files)
         self.btn_excluir_html.clicked.connect(self.update_selected_list_items)
-        self.btn_excluir_html.clicked.connect(self.db_manager.remove_selecteds_items)
+        self.btn_excluir_html.clicked.connect(self.ui_db_manager.remove_selecteds_items)
 
 
 
 
-        self.db_manager.files_changed.connect(self.atualizar_lista_widget)
+        self.ui_db_manager.files_changed.connect(self.atualizar_lista_widget)
 
 
     def update_selected_list_items(self):
         
         items = [item.text() for item in self.list_arquivos_carregados.selectedItems()]
-        self.db_manager.set_selected_files(items=items)
+        self.ui_db_manager.set_selected_files(items=items)
     
             
     def atualizar_lista_widget(self, lista_de_arquivos):
