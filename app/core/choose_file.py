@@ -1,6 +1,6 @@
 from typing import Tuple, Optional
 from PySide6.QtWidgets import QFileDialog, QWidget
-from configs import DEFAULT_PATH, ALL_FILES_FILTER
+from app.configs import DEFAULT_PATH, ALL_FILES_FILTER
 
 
 def choose_file(

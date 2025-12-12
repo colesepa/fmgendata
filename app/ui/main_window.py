@@ -12,8 +12,8 @@ from PySide6.QtWidgets import (
     QAbstractItemView,
     )
 
-from core.ui_db_manager import UiDbManager
-from core.components.FilesList import FileList
+from app.core.ui_db_manager import UiDbManager
+from app.core.components.files_list import FileList
 
 class MainWindow(QMainWindow):
     def __init__(self):

@@ -3,8 +3,8 @@ from PySide6.QtCore import Signal, QObject
 from PySide6.QtWidgets import QListWidget
 from pathlib import Path
 from typing import List
-from core.choose_file import choose_file
-from configs import HTML_FILTER
+from app.core.choose_file import choose_file
+from app.configs import HTML_FILTER
 from .db_manager import bulk_upsert, create_db
 from .data_manipulation import fm_create_dataframe
 import pandas as pd

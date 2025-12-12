@@ -7,10 +7,14 @@ from .data_manipulation import concat_positions
 
 def connect_db(db_name: str = 'data.db') -> sqlite3.Connection:
     
+    # TODO: Criar verificação se a pasta que armazena a database está criadac
+    
     root = Path(__file__).resolve().parents[2]
     path = root/'data'/'db'/db_name
-    
+    print(path)
     conn = sqlite3.connect(path)
+    # conn = sqlite3.connect(r'D:\matheus\fmgendata\data\raw\db')
+    
     
     
     return conn

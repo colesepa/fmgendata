@@ -13,7 +13,9 @@ class Database():
             
         elif str(path) == ":memory:":
             self.db_path = ":memory:"
-            
+        
+    # TODO: Criar verificação se a pasta que armazena a database está criada
+        
         else:
             self.db_path = Path(path)
         self._conn = sqlite3.connect(self.db_path)
