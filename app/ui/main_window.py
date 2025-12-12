@@ -1,4 +1,5 @@
 from PySide6.QtCore import QSize, Qt
+from functools import partial
 from PySide6.QtWidgets import (
     QMainWindow, 
     QLabel, 
@@ -12,6 +13,7 @@ from PySide6.QtWidgets import (
     )
 
 from core.ui_db_manager import UiDbManager
+from core.components.FilesList import FileList
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -24,9 +26,9 @@ class MainWindow(QMainWindow):
         
         # --- 2. Criação dos Widgets ---
         
-        self.list_arquivos_carregados = QListWidget()
-        self.list_arquivos_carregados.setSelectionMode(QAbstractItemView.ExtendedSelection)
-        self.list_arquivos_carregados_selected_items = self.list_arquivos_carregados.selectedItems()
+        self.list_arquivos_carregados = FileList()
+        # self.list_arquivos_carregados.setSelectionMode(QAbstractItemView.ExtendedSelection)
+        self.list_arquivos_carregados_selected_items = []
         
         self.btn_carregar_html = QPushButton("Carregar HTML")
         
@@ -61,18 +63,21 @@ class MainWindow(QMainWindow):
         
         # --- Signals ---
         
-        self.btn_carregar_html.clicked.connect(self.ui_db_manager.select_files)
-        self.btn_clear_list.clicked.connect(self.ui_db_manager.clear_all_files)
+        self.btn_carregar_html.clicked.connect(
+            partial(self.ui_db_manager.select_files, self.list_arquivos_carregados))
+        
+        self.btn_clear_list.clicked.connect(partial(self.ui_db_manager.clear_all_files, self.list_arquivos_carregados))
         self.btn_excluir_html.clicked.connect(self.update_selected_list_items)
         self.btn_excluir_html.clicked.connect(self.ui_db_manager.remove_selecteds_items)
-
-
-
-
+        self.btn_gerar_bd.clicked.connect(self.ui_db_manager.create_db)
+        # self.list_arquivos_carregados.itemSelectionChanged.connect(self.update_selected_list_items)
+   
         self.ui_db_manager.files_changed.connect(self.atualizar_lista_widget)
 
 
     def update_selected_list_items(self):
+        
+        self.list_arquivos_carregados_selected_items = self.list_arquivos_carregados.selectedItems()
         
         items = [item.text() for item in self.list_arquivos_carregados.selectedItems()]
         self.ui_db_manager.set_selected_files(items=items)

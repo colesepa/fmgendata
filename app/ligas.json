@@ -1,0 +1,1047 @@
+{
+    "ligas": [
+        {
+            "nome": "Premier League",
+            "pais": "Inglaterra",
+            "tier": 1,
+            "reputacao": 184,
+            "coeficiente": 1.25
+        },
+        {
+            "nome": "LALIGA EA SPORTS",
+            "pais": "Espanha",
+            "tier": 1,
+            "reputacao": 179,
+            "coeficiente": 1.2335526315789473
+        },
+        {
+            "nome": "Serie A TIM",
+            "pais": "Italia",
+            "tier": 1,
+            "reputacao": 170,
+            "coeficiente": 1.2039473684210527
+        },
+        {
+            "nome": "Bundesliga",
+            "pais": "Alemanha",
+            "tier": 1,
+            "reputacao": 169,
+            "coeficiente": 1.200657894736842
+        },
+        {
+            "nome": "Ligue 1 Uber Eats",
+            "pais": "Franca",
+            "tier": 1,
+            "reputacao": 160,
+            "coeficiente": 1.1710526315789473
+        },
+        {
+            "nome": "Brasileirao Betano Serie A",
+            "pais": "Brasil",
+            "tier": 1,
+            "reputacao": 158,
+            "coeficiente": 1.1644736842105263
+        },
+        {
+            "nome": "Liga Portugal Bwin",
+            "pais": "Portugal",
+            "tier": 1,
+            "reputacao": 156,
+            "coeficiente": 1.1578947368421053
+        },
+        {
+            "nome": "Liga Portugal Betclic",
+            "pais": "Portugal",
+            "tier": 1,
+            "reputacao": 156,
+            "coeficiente": 1.1578947368421053
+        },
+        {
+            "nome": "Eredivisie",
+            "pais": "Paises Baixos",
+            "tier": 1,
+            "reputacao": 153,
+            "coeficiente": 1.1480263157894737
+        },
+        {
+            "nome": "Liga Profesional de Futbol",
+            "pais": "Argentina",
+            "tier": 1,
+            "reputacao": 146,
+            "coeficiente": 1.125
+        },
+        {
+            "nome": "Admiral Budesliga",
+            "pais": "Austria",
+            "tier": 1,
+            "reputacao": 145,
+            "coeficiente": 1.1217105263157894
+        },
+        {
+            "nome": "Liga BBVA MX",
+            "pais": "Mexico",
+            "tier": 1,
+            "reputacao": 145,
+            "coeficiente": 1.1217105263157894
+        },
+        {
+            "nome": "cinch Premiership",
+            "pais": "Escocia",
+            "tier": 1,
+            "reputacao": 143,
+            "coeficiente": 1.1151315789473684
+        },
+        {
+            "nome": "Mir Russian Premier Liga",
+            "pais": "Russia",
+            "tier": 1,
+            "reputacao": 141,
+            "coeficiente": 1.1085526315789473
+        },
+        {
+            "nome": "Tinkoff Russian Premier League",
+            "pais": "Russia",
+            "tier": 1,
+            "reputacao": 141,
+            "coeficiente": 1.1085526315789473
+        },
+        {
+            "nome": "Mozzart Bet SuperLiga",
+            "pais": "Servia",
+            "tier": 1,
+            "reputacao": 139,
+            "coeficiente": 1.1019736842105263
+        },
+        {
+            "nome": "Vbet Liha",
+            "pais": "Ucrania",
+            "tier": 1,
+            "reputacao": 138,
+            "coeficiente": 1.0986842105263157
+        },
+        {
+            "nome": "Favbet Liha",
+            "pais": "Ucrania",
+            "tier": 1,
+            "reputacao": 138,
+            "coeficiente": 1.0986842105263157
+        },
+        {
+            "nome": "Jupiler Pro League",
+            "pais": "Belgica",
+            "tier": 1,
+            "reputacao": 137,
+            "coeficiente": 1.0953947368421053
+        },
+        {
+            "nome": "Credit Suisse Super League",
+            "pais": "Suica",
+            "tier": 1,
+            "reputacao": 136,
+            "coeficiente": 1.0921052631578947
+        },
+        {
+            "nome": "Raiffeisen Super League",
+            "pais": "Suica",
+            "tier": 1,
+            "reputacao": 136,
+            "coeficiente": 1.0921052631578947
+        },
+        {
+            "nome": "Sky Bet Championship",
+            "pais": "Inglaterra",
+            "tier": 2,
+            "reputacao": 134,
+            "coeficiente": 1.0855263157894737
+        },
+        {
+            "nome": "Super League 1 Interwetten",
+            "pais": "Grecia",
+            "tier": 1,
+            "reputacao": 134,
+            "coeficiente": 1.0855263157894737
+        },
+        {
+            "nome": "Staiximan Super League",
+            "pais": "Grecia",
+            "tier": 1,
+            "reputacao": 134,
+            "coeficiente": 1.0855263157894737
+        },
+        {
+            "nome": "SuperSport HNL",
+            "pais": "Croacia",
+            "tier": 1,
+            "reputacao": 133,
+            "coeficiente": 1.0822368421052633
+        },
+        {
+            "nome": "SuperSport Hrvatska nogometna liga",
+            "pais": "Croacia",
+            "tier": 1,
+            "reputacao": 133,
+            "coeficiente": 1.0822368421052633
+        },
+        {
+            "nome": "Fortuna Liga",
+            "pais": "Chequia",
+            "tier": 1,
+            "reputacao": 133,
+            "coeficiente": 1.0822368421052633
+        },
+        {
+            "nome": "3F Superliga",
+            "pais": "Dinamarca",
+            "tier": 1,
+            "reputacao": 133,
+            "coeficiente": 1.0822368421052633
+        },
+        {
+            "nome": "Eliteserien",
+            "pais": "Noruega",
+            "tier": 1,
+            "reputacao": 133,
+            "coeficiente": 1.0822368421052633
+        },
+        {
+            "nome": "Spor Toto Super Lig",
+            "pais": "Turquia ",
+            "tier": 1,
+            "reputacao": 133,
+            "coeficiente": 1.0822368421052633
+        },
+        {
+            "nome": "Major League Soccer",
+            "pais": "Usa",
+            "tier": 1,
+            "reputacao": 133,
+            "coeficiente": 1.0822368421052633
+        },
+        {
+            "nome": "Lega One Zero",
+            "pais": "Israel",
+            "tier": 1,
+            "reputacao": 130,
+            "coeficiente": 1.0723684210526316
+        },
+        {
+            "nome": "Liga BetPlay DiMayor",
+            "pais": "Colombia",
+            "tier": 1,
+            "reputacao": 127,
+            "coeficiente": 1.0625
+        },
+        {
+            "nome": "Allsvenskan",
+            "pais": "Suecia",
+            "tier": 1,
+            "reputacao": 127,
+            "coeficiente": 1.0625
+        },
+        {
+            "nome": "Efbet League",
+            "pais": "Bulgaria",
+            "tier": 1,
+            "reputacao": 123,
+            "coeficiente": 1.049342105263158
+        },
+        {
+            "nome": "2. Bundesliga",
+            "pais": "Alemanha",
+            "tier": 2,
+            "reputacao": 123,
+            "coeficiente": 1.049342105263158
+        },
+        {
+            "nome": "Ping An CFA Super League",
+            "pais": "China",
+            "tier": 1,
+            "reputacao": 122,
+            "coeficiente": 1.0460526315789473
+        },
+        {
+            "nome": "Ping An Chinese Footbnall Association Super League",
+            "pais": "China",
+            "tier": 1,
+            "reputacao": 122,
+            "coeficiente": 1.0460526315789473
+        },
+        {
+            "nome": "Campeonato Uruguayo",
+            "pais": "Uruguai",
+            "tier": 1,
+            "reputacao": 122,
+            "coeficiente": 1.0460526315789473
+        },
+        {
+            "nome": "Torneo Uruguayo Copa Coca-Cola",
+            "pais": "Uruguai",
+            "tier": 1,
+            "reputacao": 122,
+            "coeficiente": 1.0460526315789473
+        },
+        {
+            "nome": "Campeonato AFP PlanVital",
+            "pais": "Chile",
+            "tier": 1,
+            "reputacao": 120,
+            "coeficiente": 1.0394736842105263
+        },
+        {
+            "nome": "Casa Liga I",
+            "pais": "Romenia",
+            "tier": 1,
+            "reputacao": 119,
+            "coeficiente": 1.0361842105263157
+        },
+        {
+            "nome": "Brasileirao Serie B Betnacional",
+            "pais": "Brasil",
+            "tier": 2,
+            "reputacao": 118,
+            "coeficiente": 1.0328947368421053
+        },
+        {
+            "nome": "OTP Bank Liga",
+            "pais": "Hungria",
+            "tier": 1,
+            "reputacao": 118,
+            "coeficiente": 1.0328947368421053
+        },
+        {
+            "nome": "Serie BKT",
+            "pais": "Italia",
+            "tier": 2,
+            "reputacao": 118,
+            "coeficiente": 1.0328947368421053
+        },
+        {
+            "nome": "Hana 1Q K League 1",
+            "pais": "Koreia",
+            "tier": 1,
+            "reputacao": 118,
+            "coeficiente": 1.0328947368421053
+        },
+        {
+            "nome": "Ligue 2 BKT",
+            "pais": "Franca",
+            "tier": 2,
+            "reputacao": 117,
+            "coeficiente": 1.0296052631578947
+        },
+        {
+            "nome": "PKO Bank Polski Ekstraklasa",
+            "pais": "Polonia",
+            "tier": 1,
+            "reputacao": 117,
+            "coeficiente": 1.0296052631578947
+        },
+        {
+            "nome": "PKO Polski Ekstraklasa",
+            "pais": "Polonia",
+            "tier": 1,
+            "reputacao": 117,
+            "coeficiente": 1.0296052631578947
+        },
+        {
+            "nome": "LALIGA HYPERMOTION",
+            "pais": "Espanha",
+            "tier": 2,
+            "reputacao": 117,
+            "coeficiente": 1.0296052631578947
+        },
+        {
+            "nome": "LaLiga SmartBank",
+            "pais": "Espanha",
+            "tier": 2,
+            "reputacao": 117,
+            "coeficiente": 1.0296052631578947
+        },
+        {
+            "nome": "Fortuna Liga",
+            "pais": "Eslovaquia",
+            "tier": 1,
+            "reputacao": 116,
+            "coeficiente": 1.0263157894736843
+        },
+        {
+            "nome": "Priva Liga Telemach",
+            "pais": "Eslovaquia",
+            "tier": 1,
+            "reputacao": 115,
+            "coeficiente": 1.0230263157894737
+        },
+        {
+            "nome": "Admiral 2. Liga",
+            "pais": "Austria",
+            "tier": 2,
+            "reputacao": 114,
+            "coeficiente": 1.0197368421052633
+        },
+        {
+            "nome": "Liga 1 Movistar",
+            "pais": "Peru",
+            "tier": 1,
+            "reputacao": 114,
+            "coeficiente": 1.0197368421052633
+        },
+        {
+            "nome": "Primera Nacional",
+            "pais": "Argentina",
+            "tier": 2,
+            "reputacao": 113,
+            "coeficiente": 1.0164473684210527
+        },
+        {
+            "nome": "Belarusbank Vysejsaja Liha",
+            "pais": "Bielorrusia",
+            "tier": 1,
+            "reputacao": 110,
+            "coeficiente": 1.006578947368421
+        },
+        {
+            "nome": "Sky Bet League One",
+            "pais": "Inglaterra",
+            "tier": 3,
+            "reputacao": 107,
+            "coeficiente": 0.9967105263157895
+        },
+        {
+            "nome": "OBOS-ligaen",
+            "pais": "Noruega",
+            "tier": 2,
+            "reputacao": 107,
+            "coeficiente": 0.9967105263157895
+        },
+        {
+            "nome": "DStv Premiership",
+            "pais": "Africa do Sul",
+            "tier": 1,
+            "reputacao": 107,
+            "coeficiente": 0.9967105263157895
+        },
+        {
+            "nome": "Keuken Kampioen Divisie",
+            "pais": "Paises Baixos",
+            "tier": 2,
+            "reputacao": 106,
+            "coeficiente": 0.993421052631579
+        },
+        {
+            "nome": "Liga Portugal 2 SABSEG",
+            "pais": "Portugal",
+            "tier": 2,
+            "reputacao": 103,
+            "coeficiente": 0.9835526315789473
+        },
+        {
+            "nome": "Veikkausliiga",
+            "pais": "Finlandia",
+            "tier": 1,
+            "reputacao": 102,
+            "coeficiente": 0.9802631578947368
+        },
+        {
+            "nome": "Dieci Challenge League",
+            "pais": "Suica",
+            "tier": 2,
+            "reputacao": 102,
+            "coeficiente": 0.9802631578947368
+        },
+        {
+            "nome": "Brack.ch Challenge League",
+            "pais": "Suica",
+            "tier": 2,
+            "reputacao": 102,
+            "coeficiente": 0.9802631578947368
+        },
+        {
+            "nome": "Superettan",
+            "pais": "Suecia",
+            "tier": 2,
+            "reputacao": 101,
+            "coeficiente": 0.9769736842105263
+        },
+        {
+            "nome": "Prva NL",
+            "pais": "Croacia",
+            "tier": 2,
+            "reputacao": 99,
+            "coeficiente": 0.9703947368421053
+        },
+        {
+            "nome": "Isuzu UTE A-League",
+            "pais": "Australia",
+            "tier": 1,
+            "reputacao": 98,
+            "coeficiente": 0.9671052631578947
+        },
+        {
+            "nome": "Campeonato Brasileiro Serie C",
+            "pais": "Brasil",
+            "tier": 3,
+            "reputacao": 98,
+            "coeficiente": 0.9671052631578947
+        },
+        {
+            "nome": "Brasileirao Serie C",
+            "pais": "Brasil",
+            "tier": 3,
+            "reputacao": 98,
+            "coeficiente": 0.9671052631578947
+        },
+        {
+            "nome": "Prva liga Srbija",
+            "pais": "Servia",
+            "tier": 2,
+            "reputacao": 98,
+            "coeficiente": 0.9671052631578947
+        },
+        {
+            "nome": "Mozzart Bet PrvaLiga",
+            "pais": "Servia",
+            "tier": 2,
+            "reputacao": 98,
+            "coeficiente": 0.9671052631578947
+        },
+        {
+            "nome": "Fortuna Narodni Liga",
+            "pais": "Chequia",
+            "tier": 2,
+            "reputacao": 95,
+            "coeficiente": 0.9572368421052632
+        },
+        {
+            "nome": "cinch Championship",
+            "pais": "Escocia",
+            "tier": 2,
+            "reputacao": 95,
+            "coeficiente": 0.9572368421052632
+        },
+        {
+            "nome": "Betsson Super League 2",
+            "pais": "Grecia",
+            "tier": 2,
+            "reputacao": 94,
+            "coeficiente": 0.9539473684210527
+        },
+        {
+            "nome": "Super League 2 Betsson",
+            "pais": "Grecia",
+            "tier": 2,
+            "reputacao": 94,
+            "coeficiente": 0.9539473684210527
+        },
+        {
+            "nome": "Liga 3",
+            "pais": "Portugal",
+            "tier": 3,
+            "reputacao": 93,
+            "coeficiente": 0.9506578947368421
+        },
+        {
+            "nome": "Spor Toto 1. Lig",
+            "pais": "Turquia ",
+            "tier": 2,
+            "reputacao": 93,
+            "coeficiente": 0.9506578947368421
+        },
+        {
+            "nome": "Torneo BetPlay DiMayor",
+            "pais": "Colombia",
+            "tier": 2,
+            "reputacao": 92,
+            "coeficiente": 0.9473684210526316
+        },
+        {
+            "nome": "3. Liga",
+            "pais": "Alemanha",
+            "tier": 3,
+            "reputacao": 92,
+            "coeficiente": 0.9473684210526316
+        },
+        {
+            "nome": "Liga BBVA Expansion MX",
+            "pais": "Mexico",
+            "tier": 2,
+            "reputacao": 92,
+            "coeficiente": 0.9473684210526316
+        },
+        {
+            "nome": "OLIMP Football National League",
+            "pais": "Russia",
+            "tier": 2,
+            "reputacao": 92,
+            "coeficiente": 0.9473684210526316
+        },
+        {
+            "nome": "Challenger Pro Legue",
+            "pais": "Belgica",
+            "tier": 2,
+            "reputacao": 91,
+            "coeficiente": 0.944078947368421
+        },
+        {
+            "nome": "Liga Leumit",
+            "pais": "Israel",
+            "tier": 2,
+            "reputacao": 91,
+            "coeficiente": 0.944078947368421
+        },
+        {
+            "nome": "Canadian Premier League",
+            "pais": "Canada",
+            "tier": 1,
+            "reputacao": 90,
+            "coeficiente": 0.9407894736842105
+        },
+        {
+            "nome": "Campeonato Ascenso Betsson",
+            "pais": "Chile",
+            "tier": 2,
+            "reputacao": 90,
+            "coeficiente": 0.9407894736842105
+        },
+        {
+            "nome": "NordicBet Liga",
+            "pais": "Dinamarca",
+            "tier": 2,
+            "reputacao": 90,
+            "coeficiente": 0.9407894736842105
+        },
+        {
+            "nome": "Besta Deildin",
+            "pais": "Islandia",
+            "tier": 1,
+            "reputacao": 90,
+            "coeficiente": 0.9407894736842105
+        },
+        {
+            "nome": "Primera RFEF Footters",
+            "pais": "Espanha",
+            "tier": 3,
+            "reputacao": 88,
+            "coeficiente": 0.9342105263157895
+        },
+        {
+            "nome": "Primera Federacion",
+            "pais": "Espanha",
+            "tier": 3,
+            "reputacao": 88,
+            "coeficiente": 0.9342105263157895
+        },
+        {
+            "nome": "Campeonato de Portugal",
+            "pais": "Portugal",
+            "tier": 4,
+            "reputacao": 86,
+            "coeficiente": 0.9276315789473684
+        },
+        {
+            "nome": "CFA China League One",
+            "pais": "China",
+            "tier": 2,
+            "reputacao": 85,
+            "coeficiente": 0.9243421052631579
+        },
+        {
+            "nome": "Sky Bet League Two",
+            "pais": "Inglaterra",
+            "tier": 4,
+            "reputacao": 85,
+            "coeficiente": 0.9243421052631579
+        },
+        {
+            "nome": "Championnat National",
+            "pais": "Franca",
+            "tier": 3,
+            "reputacao": 85,
+            "coeficiente": 0.9243421052631579
+        },
+        {
+            "nome": "Hana 1Q K League 2",
+            "pais": "Koreia",
+            "tier": 2,
+            "reputacao": 85,
+            "coeficiente": 0.9243421052631579
+        },
+        {
+            "nome": "Fortuna 1. Liga",
+            "pais": "Polonia",
+            "tier": 2,
+            "reputacao": 85,
+            "coeficiente": 0.9243421052631579
+        },
+        {
+            "nome": "Merkantil Bank Liga",
+            "pais": "Hungria",
+            "tier": 2,
+            "reputacao": 84,
+            "coeficiente": 0.9210526315789473
+        },
+        {
+            "nome": "PostNord-ligaen",
+            "pais": "Noruega",
+            "tier": 3,
+            "reputacao": 84,
+            "coeficiente": 0.9210526315789473
+        },
+        {
+            "nome": "2. Slovenska Nogometna Liga",
+            "pais": "Eslovaquia",
+            "tier": 2,
+            "reputacao": 84,
+            "coeficiente": 0.9210526315789473
+        },
+        {
+            "nome": "GladAfrica Championship",
+            "pais": "Africa do Sul",
+            "tier": 2,
+            "reputacao": 83,
+            "coeficiente": 0.9177631578947368
+        },
+        {
+            "nome": "Vtora Profesionalna Liga",
+            "pais": "Bulgaria",
+            "tier": 2,
+            "reputacao": 82,
+            "coeficiente": 0.9144736842105263
+        },
+        {
+            "nome": "Nationale 1",
+            "pais": "Belgica",
+            "tier": 2,
+            "reputacao": 81,
+            "coeficiente": 0.9111842105263158
+        },
+        {
+            "nome": "Ykkonen",
+            "pais": "Finlandia",
+            "tier": 2,
+            "reputacao": 81,
+            "coeficiente": 0.9111842105263158
+        },
+        {
+            "nome": "Liga II Casa Pariurilor",
+            "pais": "Romenia",
+            "tier": 2,
+            "reputacao": 81,
+            "coeficiente": 0.9111842105263158
+        },
+        {
+            "nome": "Serie C",
+            "pais": "Italia",
+            "tier": 3,
+            "reputacao": 80,
+            "coeficiente": 0.9078947368421053
+        },
+        {
+            "nome": "Serie C NOW",
+            "pais": "Italia",
+            "tier": 3,
+            "reputacao": 80,
+            "coeficiente": 0.9078947368421053
+        },
+        {
+            "nome": "Serie C NOW Girone A",
+            "pais": "Italia",
+            "tier": 3,
+            "reputacao": 80,
+            "coeficiente": 0.9078947368421053
+        },
+        {
+            "nome": "Serie C NOW Girone B",
+            "pais": "Italia",
+            "tier": 3,
+            "reputacao": 80,
+            "coeficiente": 0.9078947368421053
+        },
+        {
+            "nome": "Serie C NOW Girone C",
+            "pais": "Italia",
+            "tier": 3,
+            "reputacao": 80,
+            "coeficiente": 0.9078947368421053
+        },
+        {
+            "nome": "Optibet Virsliga",
+            "pais": "Letonia",
+            "tier": 1,
+            "reputacao": 77,
+            "coeficiente": 0.8980263157894737
+        },
+        {
+            "nome": "Danske Bank Premiership",
+            "pais": "Irlanda do Norte",
+            "tier": 1,
+            "reputacao": 75,
+            "coeficiente": 0.8914473684210527
+        },
+        {
+            "nome": "Sports Direct Premiership",
+            "pais": "Irlanda do Norte",
+            "tier": 1,
+            "reputacao": 75,
+            "coeficiente": 0.8914473684210527
+        },
+        {
+            "nome": "Norsk Tipping-ligaen",
+            "pais": "Noruega",
+            "tier": 4,
+            "reputacao": 75,
+            "coeficiente": 0.8914473684210527
+        },
+        {
+            "nome": "SSE Airtricity League Premier Division",
+            "pais": "Republica da Irlanda",
+            "tier": 1,
+            "reputacao": 75,
+            "coeficiente": 0.8914473684210527
+        },
+        {
+            "nome": "Druha Futbalova Liga",
+            "pais": "Eslovaquia",
+            "tier": 2,
+            "reputacao": 75,
+            "coeficiente": 0.8914473684210527
+        },
+        {
+            "nome": "2. Division",
+            "pais": "Dinamarca",
+            "tier": 3,
+            "reputacao": 74,
+            "coeficiente": 0.8881578947368421
+        },
+        {
+            "nome": "Segunda Division RFEF",
+            "pais": "Espanha",
+            "tier": 4,
+            "reputacao": 74,
+            "coeficiente": 0.8881578947368421
+        },
+        {
+            "nome": "Segunda Federacion",
+            "pais": "Espanha",
+            "tier": 4,
+            "reputacao": 74,
+            "coeficiente": 0.8881578947368421
+        },
+        {
+            "nome": "Persha Liha",
+            "pais": "Ucrania",
+            "tier": 2,
+            "reputacao": 74,
+            "coeficiente": 0.8881578947368421
+        },
+        {
+            "nome": "MaxLine Piersaja Liha",
+            "pais": "Bielorrusia",
+            "tier": 2,
+            "reputacao": 72,
+            "coeficiente": 0.881578947368421
+        },
+        {
+            "nome": "Vanarama National League",
+            "pais": "Inglaterra",
+            "tier": 5,
+            "reputacao": 72,
+            "coeficiente": 0.881578947368421
+        },
+        {
+            "nome": "Segunda Division Profesional",
+            "pais": "Uruguai",
+            "tier": 2,
+            "reputacao": 72,
+            "coeficiente": 0.881578947368421
+        },
+        {
+            "nome": "cinch League 1",
+            "pais": "Escocia",
+            "tier": 3,
+            "reputacao": 71,
+            "coeficiente": 0.8782894736842105
+        },
+        {
+            "nome": "Ettan Fotboll Division 1",
+            "pais": "Suecia",
+            "tier": 3,
+            "reputacao": 69,
+            "coeficiente": 0.8717105263157895
+        },
+        {
+            "nome": "Championnat National 2",
+            "pais": "Franca",
+            "tier": 4,
+            "reputacao": 66,
+            "coeficiente": 0.861842105263158
+        },
+        {
+            "nome": "Championnat de France amateur",
+            "pais": "Franca",
+            "tier": 4,
+            "reputacao": 66,
+            "coeficiente": 0.861842105263158
+        },
+        {
+            "nome": "Regionalliga",
+            "pais": "Alemanha",
+            "tier": 4,
+            "reputacao": 66,
+            "coeficiente": 0.861842105263158
+        },
+        {
+            "nome": "Serie D Girone",
+            "pais": "Italia",
+            "tier": 4,
+            "reputacao": 66,
+            "coeficiente": 0.861842105263158
+        },
+        {
+            "nome": "Lengju Deildin",
+            "pais": "Islandia",
+            "tier": 2,
+            "reputacao": 65,
+            "coeficiente": 0.8585526315789473
+        },
+        {
+            "nome": "TFF 2. Lig",
+            "pais": "Turquia ",
+            "tier": 3,
+            "reputacao": 65,
+            "coeficiente": 0.8585526315789473
+        },
+        {
+            "nome": "JD Cymru Premier",
+            "pais": "Pais de Gales",
+            "tier": 1,
+            "reputacao": 64,
+            "coeficiente": 0.8552631578947368
+        },
+        {
+            "nome": "Hero I-League",
+            "pais": "India",
+            "tier": 1,
+            "reputacao": 62,
+            "coeficiente": 0.8486842105263158
+        },
+        {
+            "nome": "BRI Liga 1",
+            "pais": "Indonesia",
+            "tier": 1,
+            "reputacao": 61,
+            "coeficiente": 0.8453947368421053
+        },
+        {
+            "nome": "Liga 2",
+            "pais": "Indonesia",
+            "tier": 2,
+            "reputacao": 60,
+            "coeficiente": 0.8421052631578947
+        },
+        {
+            "nome": "3. Division",
+            "pais": "Dinamarca",
+            "tier": 4,
+            "reputacao": 57,
+            "coeficiente": 0.8322368421052632
+        },
+        {
+            "nome": "Liga III",
+            "pais": "Romenia",
+            "tier": 3,
+            "reputacao": 56,
+            "coeficiente": 0.8289473684210527
+        },
+        {
+            "nome": "Liga Eccellenza",
+            "pais": "Italia",
+            "tier": 4,
+            "reputacao": 55,
+            "coeficiente": 0.825657894736842
+        },
+        {
+            "nome": "Liga Super Malaysia",
+            "pais": "Malasia",
+            "tier": 1,
+            "reputacao": 55,
+            "coeficiente": 0.825657894736842
+        },
+        {
+            "nome": "cinch League 2",
+            "pais": "Escocia",
+            "tier": 4,
+            "reputacao": 55,
+            "coeficiente": 0.825657894736842
+        },
+        {
+            "nome": "Division 2",
+            "pais": "Suecia",
+            "tier": 4,
+            "reputacao": 49,
+            "coeficiente": 0.805921052631579
+        },
+        {
+            "nome": "AIA Singaport Premier League",
+            "pais": "Singapura",
+            "tier": 1,
+            "reputacao": 47,
+            "coeficiente": 0.799342105263158
+        },
+        {
+            "nome": "Vanarama National League North",
+            "pais": "Inglaterra",
+            "tier": 6,
+            "reputacao": 46,
+            "coeficiente": 0.7960526315789473
+        },
+        {
+            "nome": "Vanarama National League South",
+            "pais": "Inglaterra",
+            "tier": 6,
+            "reputacao": 46,
+            "coeficiente": 0.7960526315789473
+        },
+        {
+            "nome": "Liga Premier Malaysia",
+            "pais": "Malasia",
+            "tier": 2,
+            "reputacao": 42,
+            "coeficiente": 0.7828947368421053
+        },
+        {
+            "nome": "Lough 41 Championship",
+            "pais": "Irlanda do Norte",
+            "tier": 2,
+            "reputacao": 38,
+            "coeficiente": 0.7697368421052632
+        },
+        {
+            "nome": "SSE Airtricity League First Division",
+            "pais": "Republica da Irlanda",
+            "tier": 2,
+            "reputacao": 35,
+            "coeficiente": 0.7598684210526316
+        },
+        {
+            "nome": "Lough 41 Premier Intermidiate League",
+            "pais": "Irlanda do Norte",
+            "tier": 3,
+            "reputacao": 34,
+            "coeficiente": 0.756578947368421
+        },
+        {
+            "nome": "JD Cymru North/South",
+            "pais": "Pais de Gales",
+            "tier": 2,
+            "reputacao": 33,
+            "coeficiente": 0.7532894736842105
+        },
+        {
+            "nome": "BOC Life Hong Kong Premier League",
+            "pais": "Hong Kong",
+            "tier": 1,
+            "reputacao": 32,
+            "coeficiente": 0.75
+        }
+    ]
+}

@@ -2,7 +2,7 @@ from pathlib import Path
 import sqlite3
 import pandas as pd
 from typing import List, Any
-from data_manipulation import concat_positions
+from .data_manipulation import concat_positions
 
 
 def connect_db(db_name: str = 'data.db') -> sqlite3.Connection:
@@ -147,7 +147,7 @@ def bulk_upsert(
     cur = conn.cursor ()
     
     if "posicao_analise" in columns_df:
-        df['posicao_analse'] = df['posicao_analse'].apply(concat_positions)
+        df['posicao_analise'] = df['posicao_analise'].apply(concat_positions)
         
     else:
         return
@@ -157,7 +157,7 @@ def bulk_upsert(
     update_columns = [f'{col}=excluded.{col}' for col in columns_df if col not in ("id", "id_temporada")]
     update_joined = ", ".join(update_columns)
     
-    query = f"""
+    query = f""""?"
     INSERT INTO {table_name} ({columns_joined})
     VALUES ({placeholdeer})
     ON CONFLICT(id, id_temporada) DO UPDATE SET 

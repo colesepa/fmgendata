@@ -8,7 +8,34 @@ dependencies = [
     "lxml>=6.0.2",
     "pandas>=2.3.2",
     "pyside6>=6.9.2",
+    "pytest>=9.0.2",
+    "unidecode>=1.4.0",
 ]
+[tool.pytest.ini_options]
+pythonpath = [
+    ".",        # adiciona a raiz ao sys.path
+    "app"       # garante que o pacote app seja resolvido
+]
+
+testpaths = [
+    "tests"     # diz onde os testes estão
+]
+
+addopts = "-vv --strict-markers"
+
+python_files = [
+    "test_*.py",
+    "*_test.py"
+]
+
+python_classes = [
+    "Test*"
+]
+
+python_functions = [
+    "test_*"
+]
+
 
 
 

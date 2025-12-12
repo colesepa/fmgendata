@@ -1,30 +1,12 @@
-from typing import List, Union, Sequence
+from typing import List, Union, Sequence,Any
 import os
 import pandas as pd
 import re
 import numpy as np
 from pandas.api.typing import NAType
-# from .files_utils import get_selected_files_names, get_file_extension, get_selected_files_paths
-
-from data_preprocessing import (
-                                    _initialize_dataframe,
-                                    _drop_fm_dataframe_columns,
-                                    _normalize_values,
-                                    _str_to_numeric_values,
-                                    _fillna_with_default,
-                                    _replace_hyphen_with_zero,
-                                    _create_new_position_column,
-                                    _add_custom_metrics_columns,
-                                    _validate_path,
-                                    _get_season,
-                                    _set_reputation
-                                    
-                                    # _rename_columns_names,
-                                    # _reorganize_columns_df,
-                                    )
-
+from unidecode import unidecode
+import json
 pd.set_option('future.no_silent_downcasting', True)
-
 
 def fm_create_dataframe(path:str) -> pd.DataFrame: 
     
@@ -171,15 +153,6 @@ def fm_create_dataframe(path:str) -> pd.DataFrame:
     df = _create_new_position_column(df)
     df = _add_custom_metrics_columns(df)
     
-    # 6. Preenchimentos de valores inf, -inf e NaN
-    # df = df.replace([np.inf,-np.inf, np.nan], 0.00)
-
-    # 7. Renomear algumas colunas 
-    # df = _rename_columns_names(df)
-       
-    #8. Reorganizar ordem das colunas, agrupando por contexto de estastística
-    # df = _reorganize_columns_df(df)
-    
     return df
    
 def fm_convert_str_to_numeric(df:pd.DataFrame) -> pd.DataFrame:
@@ -201,61 +174,6 @@ def fm_convert_str_to_numeric(df:pd.DataFrame) -> pd.DataFrame:
         
     return df
   
-def fm_initialize_dataframe(filePath:str) -> pd.DataFrame|None:
-    
-    """ 
-    Importa um arquivo do tipo HTML, CSV ou Excel e retorna um DataFrame do Pandas.
-
-    Args:
-        filePath (str): Caminho do arquivo a ser importado.
-        
-
-    Returns:
-        pd.DataFrame: DataFrame do Pandas
-
-    """
-    
-    name_file = get_selected_files_names(filePath)
-    extension = get_file_extension(name_file)
-
-    try:
-        if extension == 'html':
-            df_dados = pd.read_html(filePath, encoding = "utf-8", decimal = ".")  
-
-            if df_dados:
-                df_dados = df_dados[0]   
-                
-            else:
-                df_dados =  None
-
-        elif extension == 'csv':
-            df_dados = pd.read_csv(filePath, sep = ";", decimal = ".")
-            df_dados = df_dados.fillna(0)
- 
-        elif extension == 'excel':
-            df_dados = pd.read_excel(filePath)
-            
-        else:
-            df_dados =  None
-
-
-    except FileNotFoundError:
-        print(f'Erro: Caminho não encontrado')
-        df_dados =  None
-    
-    except pd.errors.ParserError as e:
-        print(f'Erro ao importar os dados: {e}')
-        df_dados =  None
-
-    except Exception as e:
-        print(f'Erro: {e}')
-        df_dados =  None
-
-    # df_dados = df_dados.dropna(subset=['IDU'])
-    # df_dados = df_dados.dropna(how='all')
-
-    return df_dados
-
 def fm_normalize_minutes_values(value:str|int) -> int:
 
     """
@@ -733,11 +651,6 @@ def fm_create_new_parameters(df:pd.DataFrame) -> pd.DataFrame:
 
     return df
 
-def load_database():
-    df = ""
-    
-    pass
-
 def concat_positions(x:list | str) -> str:
     
     if isinstance(x, list):
@@ -747,3 +660,131 @@ def concat_positions(x:list | str) -> str:
     else:
         return x
 
+def _create_new_position_column(df:pd.DataFrame) -> pd.DataFrame:
+    
+    df = fm_create_extracted_position_column(df)
+    
+    return df
+
+def _initialize_dataframe(path:str) -> pd.DataFrame | None:
+    
+    try:
+        dados = pd.read_html(path, encoding='utf-8', decimal='.')
+        if dados:
+            df = dados[0]
+            df.dropna(how='all', inplace=True)
+            return df
+        
+    except Exception as e:
+        print(f'Erro: {e}')
+        
+def _drop_fm_dataframe_columns(df: pd.DataFrame, columns:list) -> pd.DataFrame:
+    
+    # df = df.drop(columns=[col for col in columns if col in df.columns], errors='ignore')
+    for col in columns:
+        if col in df.columns:
+            try:
+                df = df.drop(columns=col)
+            except:
+                raise KeyError(print(f'Erro ao apagar a coluna: {col}'))
+    
+    return df
+
+def _normalize_values(df:pd.DataFrame) -> pd.DataFrame:
+    
+    if 'salario' in df.columns:
+        df['salario'] = df['salario'].apply(fm_normalize_wage_values)
+        
+    if 'minutos' in df.columns:    
+        df['minutos'] = df['minutos'].apply(fm_normalize_minutes_values)
+    
+    if 'valor_estimado' in df.columns:
+        df['valor_estimado'] = df['valor_estimado'].apply(fm_normalize_estimated_values)
+        df = fm_create_max_min_estimated_column(df)
+        df = df.drop(columns='valor_estimado', errors='ignore')
+        
+    df = fm_remove_percent_symbol_from_dataframe(df)
+    
+    return df        
+        
+def _str_to_numeric_values(df:pd.DataFrame) -> pd.DataFrame:
+    
+    return fm_convert_str_to_numeric(df) 
+      
+def _fillna_with_default(df: pd.DataFrame, column: str | list |tuple , default_value:Any) -> pd.DataFrame:
+    
+    """
+    Preenche valores nulos nas colunas especificadas com um valor padrão.
+
+    Args:
+        df (pd.DataFrame): DataFrame que será modificado.
+        column (str | list | tuple): Nome da coluna, lista ou tuple de colunas a serem preenchidas.
+        default_value (any): Valor que será usado para preencher os valores nulos.
+
+    Returns:
+        pd.DataFrame: DataFrame com os valores nulos preenchidos.
+    """
+    
+    if isinstance(column, (list, tuple)):
+        for col in column:
+            if col in df.columns:
+                df[col] = df[col].fillna(default_value)
+                
+    else:
+        if column in df.columns:
+            df[column] = df[column].fillna(default_value)
+                
+    return df
+
+def _replace_hyphen_with_zero(df:pd.DataFrame) -> pd.DataFrame:
+    
+    df = df.replace('-', 0)
+    df['person'] = df['person'].replace(0,'-')
+                
+    return df
+
+def _add_custom_metrics_columns(df:pd.DataFrame) -> pd.DataFrame:
+    
+    df = fm_create_new_parameters(df)
+    
+    return df
+
+def _set_reputation(df:pd.DataFrame) -> pd.DataFrame:
+    
+    # TODO: Alterar Caminhos do arquivo JSON de ligas 
+
+    with open('/home/mjsa/Github/fmgendata/app/ligas.json', "r", encoding="utf-8") as f:
+        data = json.load(f)
+        
+    df = df    
+    df_ligas = pd.DataFrame(data['ligas'])
+    
+    coef_map = df_ligas.set_index('nome')['coeficiente'].to_dict()
+    ligas_cadastradas = list(df_ligas['nome'].unique())
+    
+    
+    df['coef'] = df['divisao'].apply(lambda x: round(coef_map[unidecode(x)], 2) if unidecode(x) in ligas_cadastradas else np.nan)
+                                    
+    return df
+   
+def _validate_path(path:str) -> bool:
+    
+    pattern = r'^.+[_]*[0-9]{4}.{1}[a-zA-Z0-9]+$'
+    
+    if re.fullmatch(pattern=pattern, string=path):
+        return True
+    else:
+        return False
+    
+def _get_season(path:str) -> int|None:
+    
+    pattern = r'^(?P<nome>.+_*)(?P<season>[0-9]{4})(?P<ext>.{1}[a-zA-Z0-9]+)'
+    season = re.search(pattern, path)
+    
+    if season:
+        season = season.group('season')
+        return int(season)
+
+def df_to_slq_inject(df: pd.DataFrame) -> pd.DataFrame:
+    df['posicao_analise'] = df['posicao_analise'].apply(concat_positions)
+    return df

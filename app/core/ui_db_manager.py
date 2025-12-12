@@ -1,11 +1,14 @@
 import os
-
 from PySide6.QtCore import Signal, QObject
 from PySide6.QtWidgets import QListWidget
 from pathlib import Path
 from typing import List
 from core.choose_file import choose_file
 from configs import HTML_FILTER
+from .db_manager import bulk_upsert, create_db
+from .data_manipulation import fm_create_dataframe
+import pandas as pd
+from app.core.components.files_list import FileList
 
 
 class UiDbManager(QObject):
@@ -18,11 +21,9 @@ class UiDbManager(QObject):
         self._files_on_db = []
         self._selected_files = []
     
-    def select_files(self) -> None:
+    def select_files(self, widget_list: FileList) -> None:
         
-        print(f"Debug: {self.temp_html_files}")
-        print(f"Debug: {self._files_on_db}")
-        
+        list_files = widget_list
         paths, _used_filter = choose_file(file_filter=HTML_FILTER)
         
         if paths:
@@ -39,19 +40,21 @@ class UiDbManager(QObject):
                     "path":paths}
                 
                 self._files_on_db.append(file_name)
+                list_files.loaded_files.append(file_name)
                 
                 self.files_changed.emit(self._files_on_db)
                 
             else:
-                
-                print("DEBUG: Arquivo já selecionado.")
-                #implantar alertar de arquivo existente
+
                 pass
     
-    def clear_all_files(self):
+    def clear_all_files(self, widget_list: FileList):
 
+        list_files = widget_list
+        
         self.temp_html_files.clear()
         self._files_on_db.clear()
+        list_files.loaded_files.clear()
         self.files_changed.emit(self._files_on_db)
         
     def set_selected_files(self, items:list) -> None:
@@ -76,6 +79,28 @@ class UiDbManager(QObject):
             
         self.files_changed.emit(self._files_on_db)
         self._selected_files.clear()
+
+    def _has_data_file(self) -> bool:
         
-        print(f"Debug-Remove: {self.temp_html_files}")
-        print(f"Debug-Remove: {self._files_on_db}")
+        root = Path(__file__).resolve().parents[2]
+        path_data = root/'data'/'db'/'data.db'
+        
+        return Path.is_file(path_data)
+    
+    def create_db(self) -> None:
+        
+        files = self._selected_files
+        
+        if not self._has_data_file():
+            create_db()
+            
+        elif files:
+            
+            df = pd.DataFrame()
+            for file in files:
+                path = self.temp_html_files[file.removesuffix(".html")]['path']
+                df = fm_create_dataframe(path)
+                bulk_upsert(df)
+              
+            
+    
