@@ -12,3 +12,7 @@ wheels/
 # Databases
 
 *.db
+
+# userdata dir
+
+userdata/

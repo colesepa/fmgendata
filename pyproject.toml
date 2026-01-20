@@ -14,7 +14,7 @@ dependencies = [
 [tool.pytest.ini_options]
 pythonpath = [
     ".",        # adiciona a raiz ao sys.path
-    "app"       # garante que o pacote app seja resolvido
+    "fmgendata"       # garante que o pacote app seja resolvido
 ]
 
 testpaths = [
@@ -36,6 +36,13 @@ python_functions = [
     "test_*"
 ]
 
+[project.scripts]
 
+fmgendata = "fmgendata.__main__:main"
+
+[build-system]
+
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 

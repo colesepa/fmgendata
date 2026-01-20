@@ -1,10 +1,10 @@
-from app.core.database import Database
-from app.core.data_manipulation import fm_create_dataframe, df_to_slq_inject
+from fmgendata.infra.storage.database import Database
+from fmgendata.core.services.data_manipulation import fm_create_dataframe, df_to_slq_inject
 
 
 def test_injenct_data_on_database(db: Database) -> None:
     
-    path = '/home/mjsa/Github/fmgendata/data/raw/Italia_2024.html'
+    path = 'userdata/imports/raw_data/foggia_2024.html'
     db = Database(":memory:")
     df = fm_create_dataframe(path)
     df = df_to_slq_inject(df)

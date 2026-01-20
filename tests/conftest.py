@@ -1,7 +1,7 @@
 from typing import Any, Generator
 import pytest
-from app.core.database import Database
-from app.core.data_manipulation import fm_create_dataframe, df_to_slq_inject
+from fmgendata.infra.storage.database import Database
+from fmgendata.core.services.data_manipulation import fm_create_dataframe, df_to_slq_inject
 
 @pytest.fixture
 def empyty_db() -> Generator[Database, Any, None]:
