@@ -782,14 +782,14 @@ def _set_reputation(df:pd.DataFrame) -> pd.DataFrame:
                                     
     return df
    
-def _validate_path(path:str) -> bool:
+# def _validate_path(path:str) -> bool:
     
-    pattern = r'^.+[_]*[0-9]{4}.{1}[a-zA-Z0-9]+$'
+#     pattern = r'^.+[_]*[0-9]{4}.{1}[a-zA-Z0-9]+$'
     
-    if re.fullmatch(pattern=pattern, string=path):
-        return True
-    else:
-        return False
+#     if re.fullmatch(pattern=pattern, string=path):
+#         return True
+#     else:
+#         return False
     
 def _get_season(path:str) -> int|None:
     
