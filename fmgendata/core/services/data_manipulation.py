@@ -28,132 +28,132 @@ def fm_create_dataframe(path:str) -> pd.DataFrame:
     #1. Carregar arquivo para criação do dataframe e criar id da temp dos dados
     
     #1.1 Validar nome do arquivo
-    if _validate_path(path):
-        df = _initialize_dataframe(path)
-    else:
-        raise Exception('Arquivo inválido. Seguir padrão: xxxx_20xx.ext')
+    # if _validate_path(path):
+    #     df = _initialize_dataframe(path)
+    # else:
+    #     raise Exception('Arquivo inválido. Seguir padrão: xxxx_20xx.ext')
 
 
-    #1.2 Pegar temporada do dado
-    ID_SEASON = _get_season(path)
+    # #1.2 Pegar temporada do dado
+    # ID_SEASON = _get_season(path)
     
-    #1.3 Criar coluna com id da temporada
+    # #1.3 Criar coluna com id da temporada
     
-    if isinstance(df, pd.DataFrame):
+    # if isinstance(df, pd.DataFrame):
     
-        df['id_temporada'] = ID_SEASON # type: ignore
+    #     df['id_temporada'] = ID_SEASON # type: ignore
  
-    #1.4 Criar coluna com nome da db de referencia dos dados SOURCE
+    # #1.4 Criar coluna com nome da db de referencia dos dados SOURCE
     
-        df['source'] = os.path.basename(path)
+    #     df['source'] = os.path.basename(path)
     
     # 2. Limpeza estutural e renomeaçao das colunas importadas    
     
-    COLUMNS_FOR_DROP = [
-        'Preço Exigido',
-        'Inf',
-        '% Remates',
-        '% Cr T',
-        'Conv %',
-        'Crz T/90',
-        'Fls',
-        'FL/90',
-        'Fj',
-        'Gls/90',
-        'Golos fora da área',
-        'Op C/90',
-        'PC',
-        'Peso',
-        'Remates fora da área/90',
-        'Rems Bloq/90',
-        'Sprints/90',
-        'xG AcE',
-        'xG/90',
-        'xG/remate',
-        'Amr',
-        'Vermelhos',
-        '% Dfp',
-        'Valor',
-        'PC/90',
-        'Base',
-        ]
-    COLUMNS_FOR_RENAME = {
-    '% Passe':'passe_c_p100',
-    '% de Pen. Def.':'gk_pen_def_p100',
-    'Altura':'altura',
-    'Alí/90':'alivios_p90',
-    'Assis/90':'ass_p90',
-    'Ast':'ass',
-    'Blq/90':'bloqueios_p90',
-    'CC-JA %':'cruz_c_p100',
-    'CC-JA/90':'cruz_c_p90',
-    'CT-JA/90':'cruz_t_p90',
-    'Cab %':'cab_g_p100',
-    'Cab Dec/90':'cab_dec_p90',
-    'Cab G/90':'cab_g_p90',
-    'Cab P/90':'cab_p_p90',
-    'Cl Med':'nota_med',
-    'Clube':'clube',
-    'Defesas/90':'gk_def_p90',
-    'Des Dec/90':'des_dec_p90',
-    'Des/90':'des_g_p90',
-    'Dfa':'gk_def_desv',
-    'Dft':'gk_def_dif',
-    'Divisão':'divisao',
-    'Ds':'gk_def_segu',
-    'Expira':'final_contrato',
-    'Fls':'faltas_sof',
-    'Fnt/90':'fintas_p90',
-    'Gl Err':'erro_chave',
-    'Gls':'gols',
-    'HdJ':'motm',
-    'IDU':'id',
-    'Idade':'idade',
-    'Int/90':'int_p90',
-    'JAr T/90':'jg_ar_t_p90',
-    'Jogos':'partidas',
-    'M Des':'des_c_p100',
-    'Mins':'minutos',
-    'Nac':'nac',
-    'Nome':'nome',
-    'OCG':'grandes_chances',
-    'PD-JC/90':'passe_dec_p90',
-    'Passes Pr/90':'passe_prog_p90',
-    'Pens':'penaltis_batidos',
-    'Pens M':'penaltis_conv',
-    'Personalidade':'person',
-    'Posição':'posicao',
-    'Poss Con/90':'poss_g_p90',
-    'Poss Perd/90':'poss_p_p90',
-    'Pr C/90':'press_c_p90',
-    'Pr T/90':'press_t_p90',
-    'Preço Exigido':'preco',
-    'Ps A/90':'passe_t_p90',
-    'Ps C/90':'passe_c_p90',
-    'Pé Preferido': 'melhor_pe',
-    'Rem %':'chutes_gol',
-    'Remt/90.1':'chutes_gol_p90',
-    'Remates':'chutes',
-    'Remt/90':'chutes_p90',
-    'Salário':'salario',
-    'Sem golos sofridos':'gk_sg',
-    'Sof/90':'gk_gsof_p90',
-    'T Desa':'des_t',
-    'Valor Estimado':'valor_estimado',
-    'xA':'xA',
-    'xA/90':'xA_p90',
-    'xG':'xG',
-    'xG SP':'npxG',
-    'xG SP/90':'npxG_p90',
-    'xGD':'gk_xG_def',
-    'xGP/90':'gk_xG_def_p90',    
-    }
+    # COLUMNS_FOR_DROP = [
+    #     'Preço Exigido',
+    #     'Inf',
+    #     '% Remates',
+    #     '% Cr T',
+    #     'Conv %',
+    #     'Crz T/90',
+    #     'Fls',
+    #     'FL/90',
+    #     'Fj',
+    #     'Gls/90',
+    #     'Golos fora da área',
+    #     'Op C/90',
+    #     'PC',
+    #     'Peso',
+    #     'Remates fora da área/90',
+    #     'Rems Bloq/90',
+    #     'Sprints/90',
+    #     'xG AcE',
+    #     'xG/90',
+    #     'xG/remate',
+    #     'Amr',
+    #     'Vermelhos',
+    #     '% Dfp',
+    #     'Valor',
+    #     'PC/90',
+    #     'Base',
+    #     ]
+    # COLUMNS_FOR_RENAME = {
+    # '% Passe':'passe_c_p100',
+    # '% de Pen. Def.':'gk_pen_def_p100',
+    # 'Altura':'altura',
+    # 'Alí/90':'alivios_p90',
+    # 'Assis/90':'ass_p90',
+    # 'Ast':'ass',
+    # 'Blq/90':'bloqueios_p90',
+    # 'CC-JA %':'cruz_c_p100',
+    # 'CC-JA/90':'cruz_c_p90',
+    # 'CT-JA/90':'cruz_t_p90',
+    # 'Cab %':'cab_g_p100',
+    # 'Cab Dec/90':'cab_dec_p90',
+    # 'Cab G/90':'cab_g_p90',
+    # 'Cab P/90':'cab_p_p90',
+    # 'Cl Med':'nota_med',
+    # 'Clube':'clube',
+    # 'Defesas/90':'gk_def_p90',
+    # 'Des Dec/90':'des_dec_p90',
+    # 'Des/90':'des_g_p90',
+    # 'Dfa':'gk_def_desv',
+    # 'Dft':'gk_def_dif',
+    # 'Divisão':'divisao',
+    # 'Ds':'gk_def_segu',
+    # 'Expira':'final_contrato',
+    # 'Fls':'faltas_sof',
+    # 'Fnt/90':'fintas_p90',
+    # 'Gl Err':'erro_chave',
+    # 'Gls':'gols',
+    # 'HdJ':'motm',
+    # 'IDU':'id',
+    # 'Idade':'idade',
+    # 'Int/90':'int_p90',
+    # 'JAr T/90':'jg_ar_t_p90',
+    # 'Jogos':'partidas',
+    # 'M Des':'des_c_p100',
+    # 'Mins':'minutos',
+    # 'Nac':'nac',
+    # 'Nome':'nome',
+    # 'OCG':'grandes_chances',
+    # 'PD-JC/90':'passe_dec_p90',
+    # 'Passes Pr/90':'passe_prog_p90',
+    # 'Pens':'penaltis_batidos',
+    # 'Pens M':'penaltis_conv',
+    # 'Personalidade':'person',
+    # 'Posição':'posicao',
+    # 'Poss Con/90':'poss_g_p90',
+    # 'Poss Perd/90':'poss_p_p90',
+    # 'Pr C/90':'press_c_p90',
+    # 'Pr T/90':'press_t_p90',
+    # 'Preço Exigido':'preco',
+    # 'Ps A/90':'passe_t_p90',
+    # 'Ps C/90':'passe_c_p90',
+    # 'Pé Preferido': 'melhor_pe',
+    # 'Rem %':'chutes_gol',
+    # 'Remt/90.1':'chutes_gol_p90',
+    # 'Remates':'chutes',
+    # 'Remt/90':'chutes_p90',
+    # 'Salário':'salario',
+    # 'Sem golos sofridos':'gk_sg',
+    # 'Sof/90':'gk_gsof_p90',
+    # 'T Desa':'des_t',
+    # 'Valor Estimado':'valor_estimado',
+    # 'xA':'xA',
+    # 'xA/90':'xA_p90',
+    # 'xG':'xG',
+    # 'xG SP':'npxG',
+    # 'xG SP/90':'npxG_p90',
+    # 'xGD':'gk_xG_def',
+    # 'xGP/90':'gk_xG_def_p90',    
+    # }
     
-    #2.1 Deletar colunas sem usos
-    df = _drop_fm_dataframe_columns(df, COLUMNS_FOR_DROP) # type: ignore
+    # #2.1 Deletar colunas sem usos
+    # df = _drop_fm_dataframe_columns(df, COLUMNS_FOR_DROP) # type: ignore
     
-    #2.2 Renomear colunas para padrão da DB (snake_case)
-    df.rename(columns=COLUMNS_FOR_RENAME, inplace=True)
+    # #2.2 Renomear colunas para padrão da DB (snake_case)
+    # df.rename(columns=COLUMNS_FOR_RENAME, inplace=True)
         
     # 3. Normalização de valores (salarios, minutos, valor estimado e %)
     df = _normalize_values(df)
@@ -681,29 +681,29 @@ def _create_new_position_column(df:pd.DataFrame) -> pd.DataFrame:
     
     return df
 
-def _initialize_dataframe(path:str) -> pd.DataFrame | None:
+# def _initialize_dataframe(path:str) -> pd.DataFrame | None:
     
-    try:
-        dados = pd.read_html(path, encoding='utf-8', decimal='.')
-        if dados:
-            df = dados[0]
-            df.dropna(how='all', inplace=True)
-            return df
+#     try:
+#         dados = pd.read_html(path, encoding='utf-8', decimal='.')
+#         if dados:
+#             df = dados[0]
+#             df.dropna(how='all', inplace=True)
+#             return df
         
-    except Exception as e:
-        print(f'Erro: {e}')
+#     except Exception as e:
+#         print(f'Erro: {e}')
         
-def _drop_fm_dataframe_columns(df: pd.DataFrame, columns:list) -> pd.DataFrame:
+# def _drop_fm_dataframe_columns(df: pd.DataFrame, columns:list) -> pd.DataFrame:
     
-    # df = df.drop(columns=[col for col in columns if col in df.columns], errors='ignore')
-    for col in columns:
-        if col in df.columns:
-            try:
-                df = df.drop(columns=col)
-            except:
-                raise KeyError(print(f'Erro ao apagar a coluna: {col}'))
+#     # df = df.drop(columns=[col for col in columns if col in df.columns], errors='ignore')
+#     for col in columns:
+#         if col in df.columns:
+#             try:
+#                 df = df.drop(columns=col)
+#             except:
+#                 raise KeyError(print(f'Erro ao apagar a coluna: {col}'))
     
-    return df
+#     return df
 
 def _normalize_values(df:pd.DataFrame) -> pd.DataFrame:
     
@@ -791,15 +791,15 @@ def _set_reputation(df:pd.DataFrame) -> pd.DataFrame:
 #     else:
 #         return False
     
-def _get_season(path:str) -> int|None:
+# def _get_season(path:str) -> int|None:
     
-    pattern = r'^(?P<nome>.+_*)(?P<season>[0-9]{4})(?P<ext>.{1}[a-zA-Z0-9]+)'
-    season = re.search(pattern, path)
+#     pattern = r'^(?P<nome>.+_*)(?P<season>[0-9]{4})(?P<ext>.{1}[a-zA-Z0-9]+)'
+#     season = re.search(pattern, path)
     
-    if season:
-        season = season.group('season')
-        return int(season)
+#     if season:
+#         season = season.group('season')
+#         return int(season)
 
-def df_to_slq_inject(df: pd.DataFrame) -> pd.DataFrame:
-    df['posicao_analise'] = df['posicao_analise'].apply(concat_positions)
-    return df
+# def df_to_slq_inject(df: pd.DataFrame) -> pd.DataFrame:
+#     df['posicao_analise'] = df['posicao_analise'].apply(concat_positions)
+#     return df
