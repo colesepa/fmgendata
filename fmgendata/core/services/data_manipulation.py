@@ -156,7 +156,7 @@ def fm_create_dataframe(path:str) -> pd.DataFrame:
     # df.rename(columns=COLUMNS_FOR_RENAME, inplace=True)
         
     # 3. Normalização de valores (salarios, minutos, valor estimado e %)
-    df = _normalize_values(df)
+    # df = _normalize_values(df)
     df = _str_to_numeric_values(df)
     
     # 4. Tratamento de valores nulos e símbolos
@@ -164,7 +164,7 @@ def fm_create_dataframe(path:str) -> pd.DataFrame:
     df = _replace_hyphen_with_zero(df)
     
     # 5. Criação de novas colunas e métricas
-    df = _set_reputation(df)
+    # df = _set_reputation(df)
     df = _create_new_position_column(df)
     df = _add_custom_metrics_columns(df)
     
@@ -189,131 +189,131 @@ def fm_convert_str_to_numeric(df:pd.DataFrame) -> pd.DataFrame:
         
     return df
   
-def fm_normalize_minutes_values(value:str|int) -> int:
+# def fm_normalize_minutes_values(value:str|int) -> int:
 
-    """
-    Função para remover espaços em branco dos valores de minutos jogados no FM.
+#     """
+#     Função para remover espaços em branco dos valores de minutos jogados no FM.
 
-    Args:
-        value: O valor dos minutos jogados, que pode ser uma string ou um inteiro.
+#     Args:
+#         value: O valor dos minutos jogados, que pode ser uma string ou um inteiro.
 
-    Returns:
-        Os minutos sem espaços em branco e em formato de um número inteiro.
+#     Returns:
+#         Os minutos sem espaços em branco e em formato de um número inteiro.
 
-    Raises:
-        TypeError: Se o valor de entrada não for uma string ou um inteiro.
-        ValueError: Se o valor de entrada não puder ser convertido para um inteiro.
+#     Raises:
+#         TypeError: Se o valor de entrada não for uma string ou um inteiro.
+#         ValueError: Se o valor de entrada não puder ser convertido para um inteiro.
 
-    Examples:
-        FMnormalizeMinutes("90")
-        90
-        FMnormalizeMinutes("90'\xa0'")
-        90
-        FMnormalizeMinutes(45)
-        45
-        >FMnormalizeMinutes("abc")
-        ValueError: Não foi possivel converter 'abc' para um inteiro.
-    """
+#     Examples:
+#         FMnormalizeMinutes("90")
+#         90
+#         FMnormalizeMinutes("90'\xa0'")
+#         90
+#         FMnormalizeMinutes(45)
+#         45
+#         >FMnormalizeMinutes("abc")
+#         ValueError: Não foi possivel converter 'abc' para um inteiro.
+#     """
 
 
-    if not isinstance(value, (str, int)):
-        raise TypeError("O valor de entrada deve ser uma String ou Inteiro.")
+#     if not isinstance(value, (str, int)):
+#         raise TypeError("O valor de entrada deve ser uma String ou Inteiro.")
     
-    try:
+#     try:
 
-        if isinstance(value, str):
+#         if isinstance(value, str):
 
-            value = value.replace('\xa0', '').replace(' ', '').replace('-','0')
-            value = int(value)
+#             value = value.replace('\xa0', '').replace(' ', '').replace('-','0')
+#             value = int(value)
     
-        if value < 0:
+#         if value < 0:
 
-            raise ValueError ("O valor dos minutos jogados tem que ser maior que zero")
+#             raise ValueError ("O valor dos minutos jogados tem que ser maior que zero")
         
-        return value
+#         return value
 
-    except ValueError as e:
-        raise ValueError (f"Não foi possivel converter '{value}' para um inteiro.") from e
+#     except ValueError as e:
+#         raise ValueError (f"Não foi possivel converter '{value}' para um inteiro.") from e
 
-def fm_normalize_wage_values(value: Union[str, int, float]) -> int:
-    """Remove espaços em branco do campo Salario. altém de transformalo  em int
-    retirando os sufixos e convertendo de str.
+# def fm_normalize_wage_values(value: Union[str, int, float]) -> int:
+#     """Remove espaços em branco do campo Salario. altém de transformalo  em int
+#     retirando os sufixos e convertendo de str.
 
-    Args:
-        value (any): Valor do campo salario, podendo ser str ou int.
+#     Args:
+#         value (any): Valor do campo salario, podendo ser str ou int.
 
-    Raises:
-        TypeError: Se o valor de entrada nao for uma str ou um int.
-        ValueError: Se os valores da str nao puderem ser normalizados e transformados
-        em int.
+#     Raises:
+#         TypeError: Se o valor de entrada nao for uma str ou um int.
+#         ValueError: Se os valores da str nao puderem ser normalizados e transformados
+#         em int.
         
 
-    Returns:
-        int: Retorna o valor do salário em formato int.
-    """
+#     Returns:
+#         int: Retorna o valor do salário em formato int.
+#     """
   
-    if not isinstance(value, (str, int)):
-        raise TypeError("O valor de entrada deve ser uma String ou Inteiro.")  
+#     if not isinstance(value, (str, int)):
+#         raise TypeError("O valor de entrada deve ser uma String ou Inteiro.")  
     
-    if isinstance(value, str):
+#     if isinstance(value, str):
 
-        try:
-            if value == 'N/D':
-                return int(0)
-            else:
-                value = re.sub(r'(€ p/s|\xa0| )', '', value)
-                return int(value)
+#         try:
+#             if value == 'N/D':
+#                 return int(0)
+#             else:
+#                 value = re.sub(r'(€ p/s|\xa0| )', '', value)
+#                 return int(value)
 
-        except ValueError as e:
-            raise ValueError (f'Não foi possivel normarlizar o valor.') from e
+#         except ValueError as e:
+#             raise ValueError (f'Não foi possivel normarlizar o valor.') from e
 
-    elif isinstance(value, int):
-        return value
+#     elif isinstance(value, int):
+#         return value
 
-def fm_remove_percent_symbol_from_values(value:str|NAType|int) -> Union[int, float,str]:
+# def fm_remove_percent_symbol_from_values(value:str|NAType|int) -> Union[int, float,str]:
     
-    """_summary_
+#     """_summary_
 
-    Args:
-        value (str): _description_
+#     Args:
+#         value (str): _description_
 
-    Returns:
-        int: _description_
-    """
-    if isinstance(value, NAType) or '-' in str(value):
-        return 0
+#     Returns:
+#         int: _description_
+#     """
+#     if isinstance(value, NAType) or '-' in str(value):
+#         return 0
         
-    else: 
-        if isinstance(value, str) and value.find('%'):
-            value = value.replace('%', '')
-            return float(value) if bool(re.match(r'[0-9]+\.?[0-9]*', value)) else value
+#     else: 
+#         if isinstance(value, str) and value.find('%'):
+#             value = value.replace('%', '')
+#             return float(value) if bool(re.match(r'[0-9]+\.?[0-9]*', value)) else value
         
-        else:
-            return value
+#         else:
+#             return value
       
-def fm_remove_percent_symbol_from_dataframe(df:pd.DataFrame) -> pd.DataFrame:
+# def fm_remove_percent_symbol_from_dataframe(df:pd.DataFrame) -> pd.DataFrame:
     
-    """_summary_
+#     """_summary_
 
-    Args:
-        df (pd.DataFrame): _description_
+#     Args:
+#         df (pd.DataFrame): _description_
 
-    Returns:
-        pd.DataFrame: _description_
-    """
+#     Returns:
+#         pd.DataFrame: _description_
+#     """
     
-    df_nomesColunas = df.columns
-    colunas_com_valores_percent = []
+#     df_nomesColunas = df.columns
+#     colunas_com_valores_percent = []
 
-    for coluna in df_nomesColunas:
-        if df[coluna].astype(str).str.contains('%').any():
-            colunas_com_valores_percent.append(coluna)
+#     for coluna in df_nomesColunas:
+#         if df[coluna].astype(str).str.contains('%').any():
+#             colunas_com_valores_percent.append(coluna)
     
-    for coluna in colunas_com_valores_percent:
-        df[coluna] = df[coluna].apply(fm_remove_percent_symbol_from_values)
+#     for coluna in colunas_com_valores_percent:
+#         df[coluna] = df[coluna].apply(fm_remove_percent_symbol_from_values)
     
         
-    return df
+#     return df
     
 def fm_create_extracted_position_column(df:pd.DataFrame) -> pd.DataFrame:
     
@@ -764,23 +764,23 @@ def _add_custom_metrics_columns(df:pd.DataFrame) -> pd.DataFrame:
     
     return df
 
-def _set_reputation(df:pd.DataFrame) -> pd.DataFrame:
+# def _set_reputation(df:pd.DataFrame) -> pd.DataFrame:
     
-    # TODO: Alterar Caminhos do arquivo JSON de ligas 
+#     # TODO: Alterar Caminhos do arquivo JSON de ligas 
 
-    with open('/home/mjsa/Github/fmgendata/app/ligas.json', "r", encoding="utf-8") as f:
-        data = json.load(f)
+#     with open('/home/mjsa/Github/fmgendata/app/ligas.json', "r", encoding="utf-8") as f:
+#         data = json.load(f)
         
-    df = df    
-    df_ligas = pd.DataFrame(data['ligas'])
+#     df = df    
+#     df_ligas = pd.DataFrame(data['ligas'])
     
-    coef_map = df_ligas.set_index('nome')['coeficiente'].to_dict()
-    ligas_cadastradas = list(df_ligas['nome'].unique())
+#     coef_map = df_ligas.set_index('nome')['coeficiente'].to_dict()
+#     ligas_cadastradas = list(df_ligas['nome'].unique())
     
     
-    df['coef'] = df['divisao'].apply(lambda x: round(coef_map[unidecode(x)], 2) if unidecode(x) in ligas_cadastradas else np.nan)
+#     df['coef'] = df['divisao'].apply(lambda x: round(coef_map[unidecode(x)], 2) if unidecode(x) in ligas_cadastradas else np.nan)
                                     
-    return df
+#     return df
    
 # def _validate_path(path:str) -> bool:
     
