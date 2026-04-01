@@ -157,7 +157,7 @@ def fm_create_dataframe(path:str) -> pd.DataFrame:
         
     # 3. Normalização de valores (salarios, minutos, valor estimado e %)
     # df = _normalize_values(df)
-    df = _str_to_numeric_values(df)
+    # df = _str_to_numeric_values(df)
     
     # 4. Tratamento de valores nulos e símbolos
     df = _fillna_with_default(df,'person','-')
@@ -165,29 +165,29 @@ def fm_create_dataframe(path:str) -> pd.DataFrame:
     
     # 5. Criação de novas colunas e métricas
     # df = _set_reputation(df)
-    df = _create_new_position_column(df)
+    # df = _create_new_position_column(df)
     df = _add_custom_metrics_columns(df)
     
     return df
    
-def fm_convert_str_to_numeric(df:pd.DataFrame) -> pd.DataFrame:
+# def fm_convert_str_to_numeric(df:pd.DataFrame) -> pd.DataFrame:
     
-    list_of_columns = list(df.columns)
-    list_of_columns.remove('partidas')
-    list_of_columns.remove('preco_min')
-    list_of_columns.remove('preco_max')
+#     list_of_columns = list(df.columns)
+#     list_of_columns.remove('partidas')
+#     list_of_columns.remove('preco_min')
+#     list_of_columns.remove('preco_max')
 
     
-    for col in list_of_columns:
-        if df[col].astype(str).str.match(r'^[+-]?(\d+\.?\d+?)$').any():
-            try:
-                df[col] = df[col].replace('-',0)
-                df[col] = pd.to_numeric(df[col])
+#     for col in list_of_columns:
+#         if df[col].astype(str).str.match(r'^[+-]?(\d+\.?\d+?)$').any():
+#             try:
+#                 df[col] = df[col].replace('-',0)
+#                 df[col] = pd.to_numeric(df[col])
                 
-            except:
-                pass
+#             except:
+#                 pass
         
-    return df
+#     return df
   
 # def fm_normalize_minutes_values(value:str|int) -> int:
 
@@ -315,157 +315,157 @@ def fm_convert_str_to_numeric(df:pd.DataFrame) -> pd.DataFrame:
         
 #     return df
     
-def fm_create_extracted_position_column(df:pd.DataFrame) -> pd.DataFrame:
+# def fm_create_extracted_position_column(df:pd.DataFrame) -> pd.DataFrame:
     
-    df['posicao_analise'] = df['posicao'].apply(fm_extract_positions_from_values)
-    return df 
+#     df['posicao_analise'] = df['posicao'].apply(fm_extract_positions_from_values)
+#     return df 
     
-def fm_extract_positions_from_values(value: str) -> list:
+# def fm_extract_positions_from_values(value: str) -> list:
     
-    """_summary_
+#     """_summary_
 
-    Returns:
-        _type_: _description_
-    """
+#     Returns:
+#         _type_: _description_
+#     """
     
     
-    import re
+#     import re
 
-    position_replacement = {'GR':'Goleiro',
-        'D:C':'Zagueiro',
-        'D:D':'Lateral-Direito',
-        'D:E':'Lateral-Esquerdo',
-        'DA:D':'Ala-Direito',
-        'DA:E':'Ala-Esquerdo',
-        'MD:C':'Volante',
-        'M:C':'Meia-Central',
-        'M:D':'Meia-Direito',
-        'M:E':'Meia-Esquerdo',
-        'MO:C':'Meia-Armador',
-        'MO:D':'Ponta-Direito',
-        'MO:E':'Ponta-Esquerdo',
-        'PL:C':'Centroavante'}
+#     position_replacement = {'GR':'Goleiro',
+#         'D:C':'Zagueiro',
+#         'D:D':'Lateral-Direito',
+#         'D:E':'Lateral-Esquerdo',
+#         'DA:D':'Ala-Direito',
+#         'DA:E':'Ala-Esquerdo',
+#         'MD:C':'Volante',
+#         'M:C':'Meia-Central',
+#         'M:D':'Meia-Direito',
+#         'M:E':'Meia-Esquerdo',
+#         'MO:C':'Meia-Armador',
+#         'MO:D':'Ponta-Direito',
+#         'MO:E':'Ponta-Esquerdo',
+#         'PL:C':'Centroavante'}
 
-    list_position_return = []
-    shorten_position_list = []
+#     list_position_return = []
+#     shorten_position_list = []
 
-    if value == 'GR':
-        list_position_return = ['Goleiro']
+#     if value == 'GR':
+#         list_position_return = ['Goleiro']
         
-    if value in (None, np.nan, '-', 0):
-        list_position_return = []
+#     if value in (None, np.nan, '-', 0):
+#         list_position_return = []
         
-    else:
-        exported_position = re.sub(r"\s", '', value).split(',')
+#     else:
+#         exported_position = re.sub(r"\s", '', value).split(',')
 
-        for positions in exported_position:
-            list_sides = re.findall(r'\((.*?)\)', positions)
+#         for positions in exported_position:
+#             list_sides = re.findall(r'\((.*?)\)', positions)
         
-            if not list_sides:
-                list_sides = ['C']
+#             if not list_sides:
+#                 list_sides = ['C']
     
         
-            if '/' in positions:
-                list_sides = list(list_sides[0])
-                list_positions = re.sub(r'\((.*?)\)', "", positions).split('/')
+#             if '/' in positions:
+#                 list_sides = list(list_sides[0])
+#                 list_positions = re.sub(r'\((.*?)\)', "", positions).split('/')
             
-                for position in list_positions:
-                    for side in list_sides:
-                        shorten_position_list.append(f'{position}:{side}')   
+#                 for position in list_positions:
+#                     for side in list_sides:
+#                         shorten_position_list.append(f'{position}:{side}')   
         
-            else:
-                list_sides = list(list_sides[0])
-                position = re.sub(r'\((.*?)\)', "", positions)
+#             else:
+#                 list_sides = list(list_sides[0])
+#                 position = re.sub(r'\((.*?)\)', "", positions)
                 
-                for side in list_sides:
-                    shorten_position_list.append(f'{position}:{side}')
+#                 for side in list_sides:
+#                     shorten_position_list.append(f'{position}:{side}')
                 
-        for position in shorten_position_list:
-            if position in position_replacement.keys():
-                list_position_return.append(position_replacement[position])
+#         for position in shorten_position_list:
+#             if position in position_replacement.keys():
+#                 list_position_return.append(position_replacement[position])
             
             
         
-    return list_position_return
+#     return list_position_return
 
-def fm_unabbreviate_numeric_values(abbreviateValue:str) -> Sequence[Union[int,str]]:
+# def fm_unabbreviate_numeric_values(abbreviateValue:str) -> Sequence[Union[int,str]]:
     
-    """_summary_
+#     """_summary_
 
-    Returns:
-        _type_: _description_
-    """
+#     Returns:
+#         _type_: _description_
+#     """
     
-    import re
+#     import re
 
 
-    unabbreviate_numeric_values: List[int] = []
+#     unabbreviate_numeric_values: List[int] = []
 
-    pattern = r'([0-9]+\.?[0-9]?)([mM]+)*'
-    matches = re.findall(pattern, abbreviateValue)
+#     pattern = r'([0-9]+\.?[0-9]?)([mM]+)*'
+#     matches = re.findall(pattern, abbreviateValue)
 
 
-    if matches:
-        for match in matches:
-            numeric_part = match[0]
-            abbreviation = match[1]
+#     if matches:
+#         for match in matches:
+#             numeric_part = match[0]
+#             abbreviation = match[1]
         
-            if numeric_part or numeric_part != '0':
-                value = float(numeric_part)
+#             if numeric_part or numeric_part != '0':
+#                 value = float(numeric_part)
             
-                if abbreviation == 'm':
-                    value = int(value*1_000)
-                    unabbreviate_numeric_values.append(value)
-                elif abbreviation == 'M':
-                    value = int(value*1_000_000)
-                    unabbreviate_numeric_values.append(value)
-                elif not abbreviation:
-                    unabbreviate_numeric_values.append(int(value))
-        return unabbreviate_numeric_values
+#                 if abbreviation == 'm':
+#                     value = int(value*1_000)
+#                     unabbreviate_numeric_values.append(value)
+#                 elif abbreviation == 'M':
+#                     value = int(value*1_000_000)
+#                     unabbreviate_numeric_values.append(value)
+#                 elif not abbreviation:
+#                     unabbreviate_numeric_values.append(int(value))
+#         return unabbreviate_numeric_values
     
-    else:
-        return unabbreviate_numeric_values         
+#     else:
+#         return unabbreviate_numeric_values         
                      
-def fm_normalize_estimated_values(value:str|int) -> Sequence[Union[int, str]]:
-    """
-    _summary_
+# def fm_normalize_estimated_values(value:str|int) -> Sequence[Union[int, str]]:
+#     """
+#     _summary_
 
-    Returns:
-        _type_: _description_
+#     Returns:
+#         _type_: _description_
 
-    """
+#     """
     
-    value = str(value)
+#     value = str(value)
 
-    if 'Não' in value: 
-            return 'NotSell'
+#     if 'Não' in value: 
+#             return 'NotSell'
 
-    elif "Des" in value:
-            return '-'
-    else:
-        return fm_unabbreviate_numeric_values(value)
+#     elif "Des" in value:
+#             return '-'
+#     else:
+#         return fm_unabbreviate_numeric_values(value)
 
-def fm_split_max_min_estimated_values(value:Sequence[Union[int, str]]) -> pd.Series:
+# def fm_split_max_min_estimated_values(value:Sequence[Union[int, str]]) -> pd.Series:
    
-    if 'NotSell' in value or '-' in value:
-        return pd.Series([value, value])
+#     if 'NotSell' in value or '-' in value:
+#         return pd.Series([value, value])
 
-    else:
-        min_price = (min(value))
-        max_price = (max(value))
+#     else:
+#         min_price = (min(value))
+#         max_price = (max(value))
         
-        return pd.Series([min_price, max_price])
+#         return pd.Series([min_price, max_price])
  
-def fm_create_max_min_estimated_column(df:pd.DataFrame) -> pd.DataFrame:
+# def fm_create_max_min_estimated_column(df:pd.DataFrame) -> pd.DataFrame:
     
-    df[['preco_min','preco_max']] = df['valor_estimado'].apply(fm_split_max_min_estimated_values)
+#     df[['preco_min','preco_max']] = df['valor_estimado'].apply(fm_split_max_min_estimated_values)
     
-    return df
+#     return df
 
 def fm_create_new_parameters(df:pd.DataFrame) -> pd.DataFrame:
 
     #Criação do valor per90
-    df['per90'] = (df['minutos']/90).round(2)
+    # df['per90'] = (df['minutos']/90).round(2)
     
     #Tranformação de colulas de str para numericas
     df['penaltis_batidos'] = pd.to_numeric(df['penaltis_batidos'], errors='coerce')
@@ -473,12 +473,12 @@ def fm_create_new_parameters(df:pd.DataFrame) -> pd.DataFrame:
     
     #Substituição de colunas existentes
     
-    df['ass_p90'] = (df['ass']/df['per90']).round(2)
-    df['cruz_c_p100'] = ((df['cruz_c_p90']/(df['cruz_t_p90']))*100).round(0)
+    # df['ass_p90'] = (df['ass']/df['per90']).round(2)
+    # df['cruz_c_p100'] = ((df['cruz_c_p90']/(df['cruz_t_p90']))*100).round(0)
 
     #Criação de parâmetros iniciais
-    df['salario_anual'] = (df['salario']*52.17).round(2)
-    df['grandes_chances_p90'] = (df['grandes_chances']/df['per90']).round(2)
+    # df['salario_anual'] = (df['salario']*52.17).round(2)
+    # df['grandes_chances_p90'] = (df['grandes_chances']/df['per90']).round(2)
    
    
 #================ Criação do parâmetro de analise das qualidades de criação de jogadas =================================
@@ -495,46 +495,45 @@ def fm_create_new_parameters(df:pd.DataFrame) -> pd.DataFrame:
     
 #================================= Taratamento de dados de finalização e gols =======================================================
 
-    df['np_chutes'] = (df['chutes'] - df['penaltis_batidos'])
-    df['np_chutes_p90'] = (df['np_chutes']/df['per90']).round(2)
-    df['np_chutes_gol'] = (df['chutes_gol'] - df['penaltis_batidos'])
-    df['np_chutes_gol_p90'] = (df['np_chutes_gol']/df['per90']).round(2)
-    df['np_chutes_gol_p100'] = ((df['np_chutes_gol']/df['np_chutes'].where(df['np_chutes_p90'] >= 0.50, np.nan))*100).round(2)
-    df = df.copy()
+    # df['np_chutes'] = (df['chutes'] - df['penaltis_batidos'])
+    # df['np_chutes_p90'] = (df['np_chutes']/df['per90']).round(2)
+    # df['np_chutes_gol'] = (df['chutes_gol'] - df['penaltis_batidos'])
+    # df['np_chutes_gol_p90'] = (df['np_chutes_gol']/df['per90']).round(2)
+    # df['np_chutes_gol_p100'] = ((df['np_chutes_gol']/df['np_chutes'].where(df['np_chutes_p90'] >= 0.50, np.nan))*100).round(2)
+    # df = df.copy()
     
-    df['xG'] = (df['npxG'] + df['penaltis_conv']*0.79).round(2) #xG
-    df['xG_p90'] = (df['xG']/df['per90']).round(2) #xG/90
-    df['npG'] = (df['gols'] - df['penaltis_conv']) #xG SP
-    df['npG_p90'] = (df['npG']/df['per90']).round(2) #xG SP/90
-    df['conv_p100'] = (df['npG']/df['np_chutes'].where(df['np_chutes'] != 0, np.nan)).round(2)
-    df['npG_ae'] = (df['npG'] - df['npxG']).round(2)
-    df['conv_penal_p100'] = ((df['penaltis_conv']/df['penaltis_batidos'].where(df['penaltis_batidos'] !=0, np.nan))*100).round(2)
-    df['npxG_per_np_chute'] = (df['npxG']/df['np_chutes'].where(df['np_chutes'] != 0, np.nan)).round(2)
-    df = df.copy()
+    # df['xG'] = (df['npxG'] + df['penaltis_conv']*0.79).round(2) #xG
+    # df['xG_p90'] = (df['xG']/df['per90']).round(2) #xG/90
+    # df['npG'] = (df['gols'] - df['penaltis_conv']) #xG SP
+    # df['npG_p90'] = (df['npG']/df['per90']).round(2) #xG SP/90
+    # df['conv_p100'] = (df['npG']/df['np_chutes'].where(df['np_chutes'] != 0, np.nan)).round(2)
+    # df['npG_ae'] = (df['npG'] - df['npxG']).round(2)
+    # df['conv_penal_p100'] = ((df['penaltis_conv']/df['penaltis_batidos'].where(df['penaltis_batidos'] !=0, np.nan))*100).round(2)
+    # df['npxG_per_np_chute'] = (df['npxG']/df['np_chutes'].where(df['np_chutes'] != 0, np.nan)).round(2)
+    # df = df.copy()
     
-    df['xPnpG_p90'] = (df['npxG_p90'] + df['xA_p90']).round(2)
-    
-    df['pnpG_p90'] = (df['npG_p90'] + df['ass_p90']).round(2)
+    # df['xPnpG_p90'] = (df['npxG_p90'] + df['xA_p90']).round(2)
+    # df['pnpG_p90'] = (df['npG_p90'] + df['ass_p90']).round(2)
     
 
     
     #====================== Criação dos dados de Analise das Finalizações ===========================================================
  
-    p1 = 0.5
-    p2 = 0.1
-    p3 = 0.2
-    p4 = 0.2
+    # p1 = 0.5
+    # p2 = 0.1
+    # p3 = 0.2
+    # p4 = 0.2
     
-    df.loc[df['np_chutes_p90'] >= 0.50, 'aval_fin'] = (
-        ((df['npxG_p90']/df['np_chutes_p90'])*p1 + 
-        (df['np_chutes_gol_p90']/df['np_chutes_p90'])*p2 +
-        df['conv_p100']*p3 + 
-        (df['npG_p90']/df['np_chutes_p90'])*p4)*df['np_chutes_p90']).round(2)
+    # df.loc[df['np_chutes_p90'] >= 0.50, 'aval_fin'] = (
+    #     ((df['npxG_p90']/df['np_chutes_p90'])*p1 + 
+    #     (df['np_chutes_gol_p90']/df['np_chutes_p90'])*p2 +
+    #     df['conv_p100']*p3 + 
+    #     (df['npG_p90']/df['np_chutes_p90'])*p4)*df['np_chutes_p90']).round(2)
     
-    df['aval_fin'] = df['aval_fin'].replace([np.inf,-np.inf ], np.nan)
-    df['aval_fin'] *= df['coef']
+    # df['aval_fin'] = df['aval_fin'].replace([np.inf,-np.inf ], np.nan)
+    # df['aval_fin'] *= df['coef']
     
-    df = df.copy()
+    # df = df.copy()
     
 #========================== Avaliações das ações ofensicas/criação ==========================================    
     
@@ -559,10 +558,10 @@ def fm_create_new_parameters(df:pd.DataFrame) -> pd.DataFrame:
 #======================== Criação de alguns parâmentrros per90 ===============================================
 
 
-    df['faltas_sofridas_p90'] = (df['FC']/df['per90']).round(2)
+    # df['faltas_sofridas_p90'] = (df['FC']/df['per90']).round(2)
     df = df.drop(columns='FC', errors='ignore')
     
-    df['erros_decisivos_p90'] = (df['erro_chave'].astype(int)/df['per90']).round(3)
+    # df['erros_decisivos_p90'] = (df['erro_chave'].astype(int)/df['per90']).round(3)
     df = df.drop(columns='erro_chave', errors='ignore')
     df = df.copy()
 
@@ -675,11 +674,11 @@ def concat_positions(x:list | str) -> str:
     else:
         return x
 
-def _create_new_position_column(df:pd.DataFrame) -> pd.DataFrame:
+# def _create_new_position_column(df:pd.DataFrame) -> pd.DataFrame:
     
-    df = fm_create_extracted_position_column(df)
+#     df = fm_create_extracted_position_column(df)
     
-    return df
+#     return df
 
 # def _initialize_dataframe(path:str) -> pd.DataFrame | None:
     
@@ -705,22 +704,22 @@ def _create_new_position_column(df:pd.DataFrame) -> pd.DataFrame:
     
 #     return df
 
-def _normalize_values(df:pd.DataFrame) -> pd.DataFrame:
+# def _normalize_values(df:pd.DataFrame) -> pd.DataFrame:
     
-    if 'salario' in df.columns:
-        df['salario'] = df['salario'].apply(fm_normalize_wage_values)
+#     if 'salario' in df.columns:
+#         df['salario'] = df['salario'].apply(fm_normalize_wage_values)
         
-    if 'minutos' in df.columns:    
-        df['minutos'] = df['minutos'].apply(fm_normalize_minutes_values)
+#     if 'minutos' in df.columns:    
+#         df['minutos'] = df['minutos'].apply(fm_normalize_minutes_values)
     
-    if 'valor_estimado' in df.columns:
-        df['valor_estimado'] = df['valor_estimado'].apply(fm_normalize_estimated_values)
-        df = fm_create_max_min_estimated_column(df)
-        df = df.drop(columns='valor_estimado', errors='ignore')
+#     if 'valor_estimado' in df.columns:
+#         df['valor_estimado'] = df['valor_estimado'].apply(fm_normalize_estimated_values)
+#         df = fm_create_max_min_estimated_column(df)
+#         df = df.drop(columns='valor_estimado', errors='ignore')
         
-    df = fm_remove_percent_symbol_from_dataframe(df)
+#     df = fm_remove_percent_symbol_from_dataframe(df)
     
-    return df        
+#     return df        
         
 def _str_to_numeric_values(df:pd.DataFrame) -> pd.DataFrame:
     
